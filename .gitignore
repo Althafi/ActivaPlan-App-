@@ -30,3 +30,9 @@ google-services.json
 
 # Sisa folder Gradle di luar modul (hanya berisi .gradle/file-system.probe)
 /activaplan/
+
+# Folder lokal: dokumen/prompt, referensi desain, dan salinan dataset
+# (dataset yang dipakai aplikasi ada di composeApp/src/commonMain/composeResources/files)
+/data/
+/docs/
+/ActivaPlanFigma/
