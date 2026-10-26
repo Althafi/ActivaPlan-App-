@@ -1,0 +1,32 @@
+# Gradle / Kotlin
+.gradle/
+build/
+.kotlin/
+local.properties
+
+# IDE
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# iOS / Xcode
+*.xcuserstate
+xcuserdata/
+iosApp/build/
+
+# Android artifacts & signing
+*.apk
+*.aab
+*.jks
+*.keystore
+.cxx/
+captures/
+
+# Secrets
+.env
+google-services.json
+
+# Sisa folder Gradle di luar modul (hanya berisi .gradle/file-system.probe)
+/activaplan/
