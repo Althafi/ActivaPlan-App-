@@ -1,0 +1,781 @@
+{
+  "schemaVersion": 1,
+  "device": {
+    "name": "Push-up board multifungsi + tali ketegangan",
+    "zones": {
+      "BLUE": {
+        "label": "Biru",
+        "target": "Dada (pectoralis)"
+      },
+      "RED": {
+        "label": "Merah",
+        "target": "Bahu (deltoid)"
+      },
+      "YELLOW": {
+        "label": "Kuning",
+        "target": "Punggung (latissimus dorsi)"
+      },
+      "GREEN": {
+        "label": "Hijau",
+        "target": "Triceps"
+      }
+    },
+    "safetyNotes": [
+      "Letakkan papan di lantai datar dan tidak licin; pastikan tidak bergeser sebelum mulai.",
+      "Periksa tali dari retak atau serat terkelupas sebelum dipakai. Jangan pakai tali yang rusak.",
+      "Jika nyeri tajam di sendi (bahu, siku, pergelangan), hentikan latihan."
+    ]
+  },
+  "exercises": [
+    {
+      "id": "pb_chest_knee_pushup",
+      "name": "Push-up Dada dari Lutut",
+      "mode": "PUSHUP_BOARD",
+      "category": "CHEST",
+      "difficulty": "EASY",
+      "boardZone": "BLUE",
+      "primaryMuscles": [
+        "chest",
+        "triceps"
+      ],
+      "sets": 3,
+      "reps": 8,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Letakkan kedua tangan pada lingkaran biru, sedikit lebih lebar dari bahu.",
+        "Turunkan lutut ke lantai, badan lurus dari kepala sampai lutut.",
+        "Turunkan dada ke arah papan selama 2 detik sambil siku terbuka sekitar 45 derajat.",
+        "Dorong kembali sampai lengan hampir lurus."
+      ],
+      "tips": [
+        "Kencangkan perut agar pinggul tidak turun."
+      ],
+      "commonMistakes": [
+        "Pinggul menekuk ke atas atau melorot.",
+        "Siku terbuka lebar 90 derajat."
+      ],
+      "progressionId": "pb_chest_pushup",
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "pb_chest_pushup",
+      "name": "Push-up Dada Standar",
+      "mode": "PUSHUP_BOARD",
+      "category": "CHEST",
+      "difficulty": "MEDIUM",
+      "boardZone": "BLUE",
+      "primaryMuscles": [
+        "chest",
+        "triceps",
+        "shoulders"
+      ],
+      "sets": 3,
+      "reps": 10,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Tangan pada lingkaran biru, kaki lurus bertumpu pada ujung jari kaki.",
+        "Badan membentuk garis lurus dari kepala sampai tumit.",
+        "Turunkan dada sampai hampir menyentuh papan, lalu dorong naik."
+      ],
+      "tips": [
+        "Tarik napas saat turun, buang napas saat mendorong."
+      ],
+      "commonMistakes": [
+        "Kepala menunduk atau mendongak berlebihan.",
+        "Gerakan setengah (tidak turun penuh)."
+      ],
+      "progressionId": "pb_chest_decline",
+      "regressionId": "pb_chest_knee_pushup",
+      "images": []
+    },
+    {
+      "id": "pb_chest_decline",
+      "name": "Push-up Dada Kaki Ditinggikan",
+      "mode": "PUSHUP_BOARD",
+      "category": "CHEST",
+      "difficulty": "HARD",
+      "boardZone": "BLUE",
+      "primaryMuscles": [
+        "chest",
+        "shoulders",
+        "triceps"
+      ],
+      "sets": 4,
+      "reps": 10,
+      "durationSeconds": null,
+      "restSeconds": 75,
+      "steps": [
+        "Tumpukan kedua kaki pada kursi atau bangku stabil setinggi lutut.",
+        "Tangan pada lingkaran biru, badan lurus.",
+        "Turunkan dada terkontrol 3 detik, dorong naik dengan kuat."
+      ],
+      "tips": [
+        "Pastikan kursi tidak bergeser sebelum mulai."
+      ],
+      "commonMistakes": [
+        "Pinggul turun sehingga punggung bawah melengkung."
+      ],
+      "progressionId": null,
+      "regressionId": "pb_chest_pushup",
+      "images": []
+    },
+    {
+      "id": "pb_shoulder_knee",
+      "name": "Push-up Bahu dari Lutut",
+      "mode": "PUSHUP_BOARD",
+      "category": "SHOULDERS",
+      "difficulty": "EASY",
+      "boardZone": "RED",
+      "primaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "sets": 3,
+      "reps": 8,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Tangan pada lingkaran merah, lutut di lantai, pinggul sedikit terangkat.",
+        "Bengkokkan siku, turunkan kepala ke arah papan.",
+        "Dorong naik sambil menjaga pinggul tetap tinggi."
+      ],
+      "tips": [
+        "Fokus rasakan tekanan di bahu depan."
+      ],
+      "commonMistakes": [
+        "Pinggul turun sehingga gerakan menjadi push-up biasa."
+      ],
+      "progressionId": "pb_shoulder_pike",
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "pb_shoulder_pike",
+      "name": "Pike Push-up",
+      "mode": "PUSHUP_BOARD",
+      "category": "SHOULDERS",
+      "difficulty": "MEDIUM",
+      "boardZone": "RED",
+      "primaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "sets": 3,
+      "reps": 8,
+      "durationSeconds": null,
+      "restSeconds": 75,
+      "steps": [
+        "Tangan pada lingkaran merah, kaki dekat tangan, pinggul tinggi membentuk huruf V terbalik.",
+        "Turunkan kepala ke arah papan dengan siku mengarah ke belakang-samping.",
+        "Dorong kembali ke posisi V."
+      ],
+      "tips": [
+        "Semakin dekat kaki ke tangan, semakin berat bebannya di bahu."
+      ],
+      "commonMistakes": [
+        "Punggung membulat.",
+        "Kepala menabrak papan karena terlalu cepat."
+      ],
+      "progressionId": "pb_shoulder_pike_elevated",
+      "regressionId": "pb_shoulder_knee",
+      "images": []
+    },
+    {
+      "id": "pb_shoulder_pike_elevated",
+      "name": "Pike Push-up Kaki Ditinggikan",
+      "mode": "PUSHUP_BOARD",
+      "category": "SHOULDERS",
+      "difficulty": "HARD",
+      "boardZone": "RED",
+      "primaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "sets": 4,
+      "reps": 8,
+      "durationSeconds": null,
+      "restSeconds": 90,
+      "steps": [
+        "Tumpukan kaki pada bangku stabil, tangan pada lingkaran merah.",
+        "Angkat pinggul setinggi mungkin, lengan dan badan membentuk sudut tajam.",
+        "Turunkan kepala terkontrol 3 detik, dorong naik."
+      ],
+      "tips": [
+        "Lakukan dengan tempo pelan untuk menjaga sendi bahu."
+      ],
+      "commonMistakes": [
+        "Terlalu banyak beban di leher."
+      ],
+      "progressionId": null,
+      "regressionId": "pb_shoulder_pike",
+      "images": []
+    },
+    {
+      "id": "pb_back_plank",
+      "name": "Plank Zona Kuning",
+      "mode": "PUSHUP_BOARD",
+      "category": "BACK",
+      "difficulty": "EASY",
+      "boardZone": "YELLOW",
+      "primaryMuscles": [
+        "back",
+        "abs",
+        "shoulders"
+      ],
+      "sets": 3,
+      "reps": null,
+      "durationSeconds": 25,
+      "restSeconds": 45,
+      "steps": [
+        "Tangan pada lingkaran kuning, lengan lurus di bawah bahu.",
+        "Badan lurus dari kepala sampai tumit.",
+        "Tahan sambil menarik bahu menjauhi telinga dan kencangkan perut."
+      ],
+      "tips": [
+        "Catatan: zona kuning adalah panduan posisi tangan dari produsen. Untuk latissimus yang lebih terasa, kombinasikan dengan latihan tali (dayung)."
+      ],
+      "commonMistakes": [
+        "Bahu naik ke telinga.",
+        "Pinggul turun."
+      ],
+      "progressionId": "pb_back_pushup_pause",
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "pb_back_pushup_pause",
+      "name": "Push-up Zona Kuning dengan Jeda",
+      "mode": "PUSHUP_BOARD",
+      "category": "BACK",
+      "difficulty": "MEDIUM",
+      "boardZone": "YELLOW",
+      "primaryMuscles": [
+        "back",
+        "chest",
+        "triceps"
+      ],
+      "sets": 3,
+      "reps": 8,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Tangan pada lingkaran kuning, badan lurus.",
+        "Turunkan badan, tahan 2 detik di posisi bawah sambil menarik belikat ke belakang.",
+        "Dorong naik."
+      ],
+      "tips": [
+        "Jeda membantu kontrol dan stabilitas belikat."
+      ],
+      "commonMistakes": [
+        "Menahan napas terlalu lama."
+      ],
+      "progressionId": "pb_back_tempo",
+      "regressionId": "pb_back_plank",
+      "images": []
+    },
+    {
+      "id": "pb_back_tempo",
+      "name": "Push-up Zona Kuning Tempo Lambat",
+      "mode": "PUSHUP_BOARD",
+      "category": "BACK",
+      "difficulty": "HARD",
+      "boardZone": "YELLOW",
+      "primaryMuscles": [
+        "back",
+        "chest",
+        "shoulders"
+      ],
+      "sets": 4,
+      "reps": 8,
+      "durationSeconds": null,
+      "restSeconds": 75,
+      "steps": [
+        "Tangan pada lingkaran kuning.",
+        "Turun 4 detik, tahan 1 detik di bawah, naik 1 detik.",
+        "Jaga belikat tetap stabil sepanjang gerakan."
+      ],
+      "tips": [
+        "Turunkan jumlah repetisi jika bentuk gerakan mulai rusak."
+      ],
+      "commonMistakes": [
+        "Mempercepat gerakan di akhir set."
+      ],
+      "progressionId": null,
+      "regressionId": "pb_back_pushup_pause",
+      "images": []
+    },
+    {
+      "id": "pb_triceps_knee",
+      "name": "Push-up Triceps dari Lutut",
+      "mode": "PUSHUP_BOARD",
+      "category": "ARMS",
+      "difficulty": "EASY",
+      "boardZone": "GREEN",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "sets": 3,
+      "reps": 8,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Tangan pada lingkaran hijau, lutut di lantai.",
+        "Siku merapat ke badan saat menurunkan dada.",
+        "Dorong naik sampai lengan lurus."
+      ],
+      "tips": [
+        "Bayangkan siku menggores sisi badan."
+      ],
+      "commonMistakes": [
+        "Siku melebar ke samping."
+      ],
+      "progressionId": "pb_triceps_pushup",
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "pb_triceps_pushup",
+      "name": "Push-up Triceps",
+      "mode": "PUSHUP_BOARD",
+      "category": "ARMS",
+      "difficulty": "MEDIUM",
+      "boardZone": "GREEN",
+      "primaryMuscles": [
+        "triceps",
+        "chest"
+      ],
+      "sets": 3,
+      "reps": 10,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Tangan pada lingkaran hijau, kaki lurus.",
+        "Siku merapat dan mengarah ke belakang saat turun.",
+        "Dorong naik dengan fokus pada triceps."
+      ],
+      "tips": [
+        "Kunci siku di atas secara terkontrol, jangan dihentakkan."
+      ],
+      "commonMistakes": [
+        "Pergelangan tangan tertekuk berlebihan."
+      ],
+      "progressionId": "pb_triceps_decline",
+      "regressionId": "pb_triceps_knee",
+      "images": []
+    },
+    {
+      "id": "pb_triceps_decline",
+      "name": "Push-up Triceps Kaki Ditinggikan",
+      "mode": "PUSHUP_BOARD",
+      "category": "ARMS",
+      "difficulty": "HARD",
+      "boardZone": "GREEN",
+      "primaryMuscles": [
+        "triceps",
+        "shoulders"
+      ],
+      "sets": 4,
+      "reps": 8,
+      "durationSeconds": null,
+      "restSeconds": 75,
+      "steps": [
+        "Kaki pada bangku stabil, tangan pada lingkaran hijau.",
+        "Turunkan badan dengan siku rapat, 3 detik.",
+        "Dorong naik kuat."
+      ],
+      "tips": [
+        "Turunkan ketinggian bangku jika pergelangan terasa tegang."
+      ],
+      "commonMistakes": [
+        "Pinggul turun."
+      ],
+      "progressionId": null,
+      "regressionId": "pb_triceps_pushup",
+      "images": []
+    },
+    {
+      "id": "rope_bicep_curl",
+      "name": "Bicep Curl dengan Tali",
+      "mode": "BOARD_ROPE",
+      "category": "ARMS",
+      "difficulty": "EASY",
+      "boardZone": null,
+      "primaryMuscles": [
+        "biceps",
+        "forearms"
+      ],
+      "sets": 3,
+      "reps": 12,
+      "durationSeconds": null,
+      "restSeconds": 45,
+      "steps": [
+        "Berdiri di atas papan, kaitkan tali ke papan dan pegang kedua gagang.",
+        "Siku menempel di sisi badan, telapak tangan menghadap depan.",
+        "Tekuk siku hingga gagang mendekati bahu, lalu turunkan pelan."
+      ],
+      "tips": [
+        "Naikkan ketegangan dengan memperpendek tali."
+      ],
+      "commonMistakes": [
+        "Badan mengayun ke belakang.",
+        "Siku bergerak ke depan."
+      ],
+      "progressionId": "rope_overhead_triceps",
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "rope_grip_hold",
+      "name": "Tahan Genggaman Tali",
+      "mode": "BOARD_ROPE",
+      "category": "ARMS",
+      "difficulty": "EASY",
+      "boardZone": null,
+      "primaryMuscles": [
+        "forearms"
+      ],
+      "sets": 3,
+      "reps": null,
+      "durationSeconds": 20,
+      "restSeconds": 30,
+      "steps": [
+        "Berdiri di atas papan, pegang gagang dengan tali sedikit tegang.",
+        "Tarik gagang ke samping badan dan tahan.",
+        "Genggam gagang kuat selama durasi yang ditentukan."
+      ],
+      "tips": [
+        "Tujuannya memperkuat genggaman."
+      ],
+      "commonMistakes": [
+        "Mengangkat bahu."
+      ],
+      "progressionId": null,
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "rope_overhead_press",
+      "name": "Overhead Press dengan Tali",
+      "mode": "BOARD_ROPE",
+      "category": "SHOULDERS",
+      "difficulty": "MEDIUM",
+      "boardZone": null,
+      "primaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "sets": 3,
+      "reps": 10,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Berdiri di atas papan, gagang di setinggi bahu, tali di belakang lengan.",
+        "Dorong gagang lurus ke atas sampai lengan hampir lurus.",
+        "Turunkan terkontrol ke bahu."
+      ],
+      "tips": [
+        "Kencangkan perut agar punggung tidak melengkung."
+      ],
+      "commonMistakes": [
+        "Punggung bawah melengkung."
+      ],
+      "progressionId": null,
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "rope_overhead_triceps",
+      "name": "Triceps Extension di Atas Kepala",
+      "mode": "BOARD_ROPE",
+      "category": "ARMS",
+      "difficulty": "MEDIUM",
+      "boardZone": null,
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "sets": 3,
+      "reps": 10,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Berdiri di atas papan, tali melewati belakang punggung, gagang di belakang kepala.",
+        "Siku mengarah ke depan dan dekat telinga.",
+        "Luruskan lengan ke atas, lalu bengkokkan pelan."
+      ],
+      "tips": [
+        "Jaga siku tetap dekat kepala."
+      ],
+      "commonMistakes": [
+        "Siku melebar."
+      ],
+      "progressionId": null,
+      "regressionId": "rope_bicep_curl",
+      "images": []
+    },
+    {
+      "id": "rope_row",
+      "name": "Dayung Membungkuk dengan Tali",
+      "mode": "BOARD_ROPE",
+      "category": "BACK",
+      "difficulty": "MEDIUM",
+      "boardZone": null,
+      "primaryMuscles": [
+        "back",
+        "biceps"
+      ],
+      "sets": 3,
+      "reps": 12,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Berdiri di atas papan, tekuk pinggul sekitar 45 derajat, punggung lurus.",
+        "Tarik gagang ke arah pinggang sambil menjepit belikat.",
+        "Lepas pelan sampai lengan lurus."
+      ],
+      "tips": [
+        "Latihan ini membantu melengkapi zona kuning pada latissimus."
+      ],
+      "commonMistakes": [
+        "Punggung membulat.",
+        "Menarik dengan bahu, bukan punggung."
+      ],
+      "progressionId": "rope_deadlift",
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "rope_upright_row",
+      "name": "Upright Row dengan Tali",
+      "mode": "BOARD_ROPE",
+      "category": "SHOULDERS",
+      "difficulty": "MEDIUM",
+      "boardZone": null,
+      "primaryMuscles": [
+        "shoulders",
+        "traps"
+      ],
+      "sets": 3,
+      "reps": 12,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Berdiri di atas papan, gagang di depan paha.",
+        "Tarik gagang ke depan dada, siku memimpin gerakan.",
+        "Turunkan terkontrol."
+      ],
+      "tips": [
+        "Jangan naikkan siku lebih tinggi dari bahu."
+      ],
+      "commonMistakes": [
+        "Mengangkat bahu ke telinga."
+      ],
+      "progressionId": null,
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "rope_squat",
+      "name": "Squat dengan Tali",
+      "mode": "BOARD_ROPE",
+      "category": "LEGS",
+      "difficulty": "EASY",
+      "boardZone": null,
+      "primaryMuscles": [
+        "quads",
+        "glutes"
+      ],
+      "sets": 3,
+      "reps": 12,
+      "durationSeconds": null,
+      "restSeconds": 60,
+      "steps": [
+        "Berdiri di atas papan selebar bahu, gagang di setinggi bahu.",
+        "Turunkan pinggul ke belakang seperti duduk, dada tegak.",
+        "Dorong tumit untuk berdiri."
+      ],
+      "tips": [
+        "Lutut searah jari kaki."
+      ],
+      "commonMistakes": [
+        "Lutut masuk ke dalam.",
+        "Tumit terangkat."
+      ],
+      "progressionId": "rope_thruster",
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "rope_calf_raise",
+      "name": "Calf Raise dengan Tali",
+      "mode": "BOARD_ROPE",
+      "category": "LEGS",
+      "difficulty": "EASY",
+      "boardZone": null,
+      "primaryMuscles": [
+        "calves"
+      ],
+      "sets": 3,
+      "reps": 15,
+      "durationSeconds": null,
+      "restSeconds": 45,
+      "steps": [
+        "Berdiri di atas papan, gagang di setinggi bahu.",
+        "Angkat tumit setinggi mungkin, tahan 1 detik.",
+        "Turunkan pelan dan regangkan betis di bawah."
+      ],
+      "tips": [
+        "Pegangan dinding jika perlu keseimbangan."
+      ],
+      "commonMistakes": [
+        "Terlalu cepat tanpa jeda."
+      ],
+      "progressionId": null,
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "rope_woodchop",
+      "name": "Woodchop Perut dengan Tali",
+      "mode": "BOARD_ROPE",
+      "category": "ABS",
+      "difficulty": "MEDIUM",
+      "boardZone": null,
+      "primaryMuscles": [
+        "abs",
+        "obliques"
+      ],
+      "sets": 3,
+      "reps": 12,
+      "durationSeconds": null,
+      "restSeconds": 45,
+      "steps": [
+        "Berdiri di atas papan, pegang gagang di dekat satu pinggul.",
+        "Tarik diagonal ke atas melewati badan ke sisi berlawanan, putar torso.",
+        "Kembali pelan, ulangi lalu ganti sisi."
+      ],
+      "tips": [
+        "Gerakan datang dari perut, bukan dari lengan."
+      ],
+      "commonMistakes": [
+        "Memutar lutut dan punggung bawah."
+      ],
+      "progressionId": null,
+      "regressionId": null,
+      "images": []
+    },
+    {
+      "id": "rope_deadlift",
+      "name": "Romanian Deadlift dengan Tali",
+      "mode": "BOARD_ROPE",
+      "category": "BACK",
+      "difficulty": "HARD",
+      "boardZone": null,
+      "primaryMuscles": [
+        "hamstrings",
+        "glutes",
+        "back"
+      ],
+      "sets": 4,
+      "reps": 10,
+      "durationSeconds": null,
+      "restSeconds": 75,
+      "steps": [
+        "Berdiri di atas papan, gagang di depan paha, lutut sedikit ditekuk.",
+        "Dorong pinggul ke belakang, turunkan gagang sepanjang paha dengan punggung lurus.",
+        "Dorong pinggul ke depan untuk berdiri tegak."
+      ],
+      "tips": [
+        "Rasakan tarikan di belakang paha."
+      ],
+      "commonMistakes": [
+        "Punggung membulat."
+      ],
+      "progressionId": null,
+      "regressionId": "rope_row",
+      "images": []
+    },
+    {
+      "id": "rope_thruster",
+      "name": "Squat to Press dengan Tali",
+      "mode": "BOARD_ROPE",
+      "category": "FULL_BODY",
+      "difficulty": "HARD",
+      "boardZone": null,
+      "primaryMuscles": [
+        "quads",
+        "glutes",
+        "shoulders"
+      ],
+      "sets": 4,
+      "reps": 10,
+      "durationSeconds": null,
+      "restSeconds": 75,
+      "steps": [
+        "Berdiri di atas papan, gagang di bahu.",
+        "Squat dalam, lalu berdiri sambil mendorong gagang ke atas kepala.",
+        "Turunkan gagang ke bahu dan ulangi."
+      ],
+      "tips": [
+        "Gunakan dorongan kaki untuk membantu bahu."
+      ],
+      "commonMistakes": [
+        "Gerakan kaki dan lengan tidak menyatu."
+      ],
+      "progressionId": null,
+      "regressionId": "rope_squat",
+      "images": []
+    }
+  ],
+  "templates": [
+    {
+      "id": "tpl_board_beginner_full",
+      "name": "Board Pemula Full Body",
+      "difficulty": "EASY",
+      "items": [
+        "pb_chest_knee_pushup",
+        "pb_shoulder_knee",
+        "pb_triceps_knee",
+        "rope_bicep_curl",
+        "rope_squat"
+      ]
+    },
+    {
+      "id": "tpl_board_chest_medium",
+      "name": "Dada & Triceps Sedang",
+      "difficulty": "MEDIUM",
+      "items": [
+        "pb_chest_pushup",
+        "pb_triceps_pushup",
+        "pb_back_pushup_pause",
+        "rope_overhead_triceps"
+      ]
+    },
+    {
+      "id": "tpl_rope_upper_medium",
+      "name": "Tali Tubuh Atas",
+      "difficulty": "MEDIUM",
+      "items": [
+        "rope_row",
+        "rope_overhead_press",
+        "rope_upright_row",
+        "rope_bicep_curl"
+      ]
+    },
+    {
+      "id": "tpl_board_hard_full",
+      "name": "Board Sulit Full Body",
+      "difficulty": "HARD",
+      "items": [
+        "pb_chest_decline",
+        "pb_shoulder_pike_elevated",
+        "pb_back_tempo",
+        "pb_triceps_decline",
+        "rope_deadlift",
+        "rope_thruster"
+      ]
+    }
+  ]
+}

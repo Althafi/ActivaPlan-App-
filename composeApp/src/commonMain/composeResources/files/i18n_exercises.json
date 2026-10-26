@@ -1,0 +1,509 @@
+{
+  "schemaVersion": 1,
+  "baseLanguage": "id",
+  "muscles": [
+    { "terms": ["dada", "chest"], "names": { "id": "Dada", "en": "Chest" } },
+    { "terms": ["triceps"], "names": { "id": "Triceps", "en": "Triceps" } },
+    { "terms": ["biceps"], "names": { "id": "Biceps", "en": "Biceps" } },
+    { "terms": ["bahu", "shoulders"], "names": { "id": "Bahu", "en": "Shoulders" } },
+    { "terms": ["perut", "abs"], "names": { "id": "Perut", "en": "Abs" } },
+    { "terms": ["perut bawah", "lower abs"], "names": { "id": "Perut bawah", "en": "Lower abs" } },
+    { "terms": ["obliques"], "names": { "id": "Otot perut samping", "en": "Obliques" } },
+    { "terms": ["punggung", "back"], "names": { "id": "Punggung", "en": "Back" } },
+    { "terms": ["punggung bawah", "lower back"], "names": { "id": "Punggung bawah", "en": "Lower back" } },
+    { "terms": ["bokong", "glutes"], "names": { "id": "Bokong", "en": "Glutes" } },
+    { "terms": ["hamstring", "hamstrings"], "names": { "id": "Hamstring", "en": "Hamstrings" } },
+    { "terms": ["paha depan", "quads"], "names": { "id": "Paha depan", "en": "Quadriceps" } },
+    { "terms": ["paha", "thighs"], "names": { "id": "Paha", "en": "Thighs" } },
+    { "terms": ["betis", "calves"], "names": { "id": "Betis", "en": "Calves" } },
+    { "terms": ["forearms"], "names": { "id": "Lengan bawah", "en": "Forearms" } },
+    { "terms": ["traps"], "names": { "id": "Trapezius", "en": "Traps" } },
+    { "terms": ["seluruh tubuh", "full body"], "names": { "id": "Seluruh tubuh", "en": "Full body" } }
+  ],
+  "packs": {
+    "en": {
+      "exercises": {
+        "ne_chest_wall_pushup": {
+          "name": "Wall Push-up",
+          "steps": [
+            "Stand one step away from the wall, palms on the wall at chest height, shoulder-width apart.",
+            "Bend your elbows and bring your chest toward the wall, keeping your body straight.",
+            "Push back to the starting position."
+          ],
+          "tips": ["Step your feet back to add difficulty."],
+          "commonMistakes": ["Hips sticking out forward."]
+        },
+        "ne_chest_knee_pushup": {
+          "name": "Knee Push-up",
+          "steps": [
+            "Rest on your knees and palms, hands slightly wider than your shoulders.",
+            "Keep a straight line from knees to head.",
+            "Lower your chest until it almost touches the floor, then push up."
+          ],
+          "tips": ["Keep your abs tight throughout the movement."],
+          "commonMistakes": ["Hips rising or sagging."]
+        },
+        "ne_chest_pushup": {
+          "name": "Standard Push-up",
+          "steps": [
+            "Start in a high plank, hands shoulder-width apart.",
+            "Lower your body as one straight line until your chest almost touches the floor.",
+            "Push up without locking your elbows."
+          ],
+          "tips": ["Keep your elbows about 45° from your body."],
+          "commonMistakes": ["Elbows flaring out to 90°.", "Head dropping down."]
+        },
+        "ne_chest_diamond": {
+          "name": "Diamond Push-up",
+          "steps": [
+            "Get into a push-up position with both hands forming a diamond under your chest.",
+            "Lower your chest toward your hands, elbows close to your body.",
+            "Push up."
+          ],
+          "tips": ["Start from your knees if it is too hard."],
+          "commonMistakes": ["Wrist pain from an overly extreme angle."]
+        },
+        "ne_abs_dead_bug": {
+          "name": "Dead Bug",
+          "steps": [
+            "Lie on your back, arms straight up, knees bent at 90° above your hips.",
+            "Slowly lower your right arm and left leg without touching the floor.",
+            "Return, then switch sides."
+          ],
+          "tips": ["Keep your lower back pressed to the floor."],
+          "commonMistakes": ["Lower back arching."]
+        },
+        "ne_abs_crunch": {
+          "name": "Crunch",
+          "steps": [
+            "Lie on your back, knees bent, hands beside your head.",
+            "Lift your shoulders off the floor by tightening your abs.",
+            "Lower slowly."
+          ],
+          "tips": ["Exhale as you come up."],
+          "commonMistakes": ["Pulling your neck with your hands."]
+        },
+        "ne_abs_leg_raise": {
+          "name": "Leg Raise",
+          "steps": [
+            "Lie on your back, legs straight and together.",
+            "Raise your legs until they are perpendicular to the floor.",
+            "Lower slowly without touching the floor."
+          ],
+          "tips": ["Bend your knees slightly if your back lifts."],
+          "commonMistakes": ["Lower back lifting off the floor."]
+        },
+        "ne_abs_plank": {
+          "name": "Plank",
+          "steps": [
+            "Rest on your forearms and toes, elbows under your shoulders.",
+            "Keep your body straight from head to heels.",
+            "Hold for the set duration."
+          ],
+          "tips": ["Squeeze your glutes and abs."],
+          "commonMistakes": ["Hips sagging or too high."]
+        },
+        "ne_arm_bench_dip": {
+          "name": "Chair Dip",
+          "steps": [
+            "Sit on the edge of a stable chair, hands beside your hips, then slide your hips forward.",
+            "Bend your elbows to 90°.",
+            "Push back up."
+          ],
+          "tips": ["The farther your feet, the harder it gets."],
+          "commonMistakes": ["Shoulders rising toward your ears."]
+        },
+        "ne_arm_wall_triceps": {
+          "name": "Close-grip Wall Push-up",
+          "steps": [
+            "Hands on the wall shoulder-width apart, elbows close to your body.",
+            "Push up and down in a controlled way."
+          ],
+          "tips": ["Move slowly."],
+          "commonMistakes": ["Elbows flaring out."]
+        },
+        "ne_arm_diamond_knee": {
+          "name": "Knee Diamond Push-up",
+          "steps": [
+            "Get into a kneeling position with your hands forming a diamond.",
+            "Lower down and push back up."
+          ],
+          "tips": ["Keep your elbows close to your body."],
+          "commonMistakes": ["Hips sagging."]
+        },
+        "ne_shoulder_arm_circles": {
+          "name": "Arm Circles",
+          "steps": [
+            "Stand with your arms straight out to the sides.",
+            "Make small circles, then big ones, then switch direction."
+          ],
+          "tips": ["Keep the movement controlled."],
+          "commonMistakes": ["Shoulders shrugging up."]
+        },
+        "ne_shoulder_pike_knee": {
+          "name": "Knee Pike Push-up",
+          "steps": [
+            "Start on your knees with your hips high, forming an inverted V.",
+            "Bend your elbows so your head moves toward the floor between your hands.",
+            "Push back up."
+          ],
+          "tips": ["Look toward your feet."],
+          "commonMistakes": ["Hips sagging."]
+        },
+        "ne_shoulder_pike": {
+          "name": "Pike Push-up",
+          "steps": [
+            "Get into an inverted V position with straight legs.",
+            "Lower your head toward the floor, then push back up."
+          ],
+          "tips": ["The closer your feet, the harder it gets."],
+          "commonMistakes": ["Rounded back."]
+        },
+        "ne_back_superman": {
+          "name": "Superman",
+          "steps": [
+            "Lie face down with your arms straight in front of you.",
+            "Lift your arms and legs at the same time.",
+            "Hold for 1-2 seconds, then lower."
+          ],
+          "tips": ["Keep your gaze on the floor."],
+          "commonMistakes": ["Craning the neck upward."]
+        },
+        "ne_back_bird_dog": {
+          "name": "Bird Dog",
+          "steps": [
+            "Start on all fours.",
+            "Extend your right arm and left leg.",
+            "Return, then switch sides."
+          ],
+          "tips": ["Keep your pelvis stable."],
+          "commonMistakes": ["Arched back."]
+        },
+        "ne_back_reverse_plank": {
+          "name": "Reverse Plank",
+          "steps": [
+            "Sit with your hands behind you and lift your hips.",
+            "Keep your body straight from head to heels.",
+            "Hold."
+          ],
+          "tips": ["Push your shoulders away from your ears."],
+          "commonMistakes": ["Hips sagging."]
+        },
+        "ne_leg_squat": {
+          "name": "Squat",
+          "steps": [
+            "Stand with your feet shoulder-width apart.",
+            "Push your hips back and lower until your thighs are parallel to the floor.",
+            "Drive through your heels to stand up."
+          ],
+          "tips": ["Keep your chest upright."],
+          "commonMistakes": ["Knees caving inward."]
+        },
+        "ne_leg_lunge": {
+          "name": "Lunge",
+          "steps": [
+            "Take a big step forward.",
+            "Lower your back knee almost to the floor.",
+            "Push back, then switch legs."
+          ],
+          "tips": ["Keep your front knee from going past your toes."],
+          "commonMistakes": ["Leaning the torso."]
+        },
+        "ne_leg_jump_squat": {
+          "name": "Jump Squat",
+          "steps": [
+            "Squat, then jump explosively.",
+            "Land softly back into a squat."
+          ],
+          "tips": ["Land with your knees bent."],
+          "commonMistakes": ["Landing stiffly."]
+        },
+        "ne_full_march": {
+          "name": "Marching in Place",
+          "steps": [
+            "Lift your knees alternately while swinging your arms.",
+            "Keep a steady rhythm."
+          ],
+          "tips": ["Keep an upright posture."],
+          "commonMistakes": ["Hunching over."]
+        },
+        "ne_full_burpee_no_jump": {
+          "name": "No-jump Burpee",
+          "steps": [
+            "Squat down and place your hands on the floor.",
+            "Step your feet back into a plank.",
+            "Return to the squat, then stand up."
+          ],
+          "tips": ["Keep a steady rhythm."],
+          "commonMistakes": ["Hips sagging in the plank."]
+        },
+        "ne_full_burpee": {
+          "name": "Burpee",
+          "steps": [
+            "Squat down, jump your feet back into a plank, do a push-up, return, then jump high."
+          ],
+          "tips": ["Land softly."],
+          "commonMistakes": ["Arched back."]
+        },
+        "pb_chest_knee_pushup": {
+          "name": "Knee Chest Push-up",
+          "steps": [
+            "Place both hands on the blue circles, slightly wider than your shoulders.",
+            "Lower your knees to the floor, body straight from head to knees.",
+            "Lower your chest toward the board for 2 seconds with your elbows at about 45 degrees.",
+            "Push back up until your arms are almost straight."
+          ],
+          "tips": ["Tighten your abs so your hips do not drop."],
+          "commonMistakes": ["Hips piking up or sagging.", "Elbows flared out to 90 degrees."]
+        },
+        "pb_chest_pushup": {
+          "name": "Standard Chest Push-up",
+          "steps": [
+            "Hands on the blue circles, legs straight and resting on your toes.",
+            "Keep your body in a straight line from head to heels.",
+            "Lower your chest until it almost touches the board, then push up."
+          ],
+          "tips": ["Inhale as you lower, exhale as you push."],
+          "commonMistakes": [
+            "Head dropping or craning up too much.",
+            "Half reps (not lowering fully)."
+          ]
+        },
+        "pb_chest_decline": {
+          "name": "Decline Chest Push-up",
+          "steps": [
+            "Rest both feet on a stable chair or bench at knee height.",
+            "Hands on the blue circles, body straight.",
+            "Lower your chest in a controlled 3 seconds, then push up hard."
+          ],
+          "tips": ["Make sure the chair does not slide before you start."],
+          "commonMistakes": ["Hips sagging, causing the lower back to arch."]
+        },
+        "pb_shoulder_knee": {
+          "name": "Knee Shoulder Push-up",
+          "steps": [
+            "Hands on the red circles, knees on the floor, hips slightly raised.",
+            "Bend your elbows and lower your head toward the board.",
+            "Push up while keeping your hips high."
+          ],
+          "tips": ["Focus on feeling the load in your front shoulders."],
+          "commonMistakes": ["Hips dropping, turning it into a regular push-up."]
+        },
+        "pb_shoulder_pike": {
+          "name": "Pike Push-up",
+          "steps": [
+            "Hands on the red circles, feet close to your hands, hips high in an inverted V.",
+            "Lower your head toward the board with your elbows pointing back and out.",
+            "Push back up to the V position."
+          ],
+          "tips": ["The closer your feet are to your hands, the more load goes to your shoulders."],
+          "commonMistakes": ["Rounded back.", "Bumping your head on the board by going too fast."]
+        },
+        "pb_shoulder_pike_elevated": {
+          "name": "Elevated Pike Push-up",
+          "steps": [
+            "Rest your feet on a stable bench, hands on the red circles.",
+            "Raise your hips as high as possible so your arms and body form a sharp angle.",
+            "Lower your head in a controlled 3 seconds, then push up."
+          ],
+          "tips": ["Use a slow tempo to protect your shoulder joints."],
+          "commonMistakes": ["Too much load on the neck."]
+        },
+        "pb_back_plank": {
+          "name": "Yellow Zone Plank",
+          "steps": [
+            "Hands on the yellow circles, arms straight under your shoulders.",
+            "Keep your body straight from head to heels.",
+            "Hold while pulling your shoulders away from your ears and tightening your abs."
+          ],
+          "tips": [
+            "Note: the yellow zone is the manufacturer's hand-position guide. For a stronger lat workout, combine it with rope exercises (rows)."
+          ],
+          "commonMistakes": ["Shoulders rising to your ears.", "Hips sagging."]
+        },
+        "pb_back_pushup_pause": {
+          "name": "Paused Yellow Zone Push-up",
+          "steps": [
+            "Hands on the yellow circles, body straight.",
+            "Lower your body and hold for 2 seconds at the bottom while pulling your shoulder blades back.",
+            "Push up."
+          ],
+          "tips": ["The pause builds control and shoulder blade stability."],
+          "commonMistakes": ["Holding your breath for too long."]
+        },
+        "pb_back_tempo": {
+          "name": "Slow Tempo Yellow Zone Push-up",
+          "steps": [
+            "Hands on the yellow circles.",
+            "Lower for 4 seconds, hold 1 second at the bottom, rise for 1 second.",
+            "Keep your shoulder blades stable throughout."
+          ],
+          "tips": ["Reduce your reps if your form starts to break down."],
+          "commonMistakes": ["Speeding up at the end of the set."]
+        },
+        "pb_triceps_knee": {
+          "name": "Knee Triceps Push-up",
+          "steps": [
+            "Hands on the green circles, knees on the floor.",
+            "Keep your elbows tucked against your body as you lower your chest.",
+            "Push up until your arms are straight."
+          ],
+          "tips": ["Imagine your elbows brushing the sides of your body."],
+          "commonMistakes": ["Elbows flaring out to the sides."]
+        },
+        "pb_triceps_pushup": {
+          "name": "Triceps Push-up",
+          "steps": [
+            "Hands on the green circles, legs straight.",
+            "Keep your elbows tucked and pointing back as you lower.",
+            "Push up, focusing on your triceps."
+          ],
+          "tips": ["Lock your elbows at the top in a controlled way, do not snap them."],
+          "commonMistakes": ["Wrists bent too much."]
+        },
+        "pb_triceps_decline": {
+          "name": "Decline Triceps Push-up",
+          "steps": [
+            "Feet on a stable bench, hands on the green circles.",
+            "Lower your body with your elbows tucked, over 3 seconds.",
+            "Push up hard."
+          ],
+          "tips": ["Lower the bench height if your wrists feel strained."],
+          "commonMistakes": ["Hips sagging."]
+        },
+        "rope_bicep_curl": {
+          "name": "Rope Bicep Curl",
+          "steps": [
+            "Stand on the board, hook the rope to the board and hold both handles.",
+            "Keep your elbows at your sides, palms facing forward.",
+            "Bend your elbows until the handles are near your shoulders, then lower slowly."
+          ],
+          "tips": ["Increase tension by shortening the rope."],
+          "commonMistakes": ["Swinging your body backward.", "Elbows moving forward."]
+        },
+        "rope_grip_hold": {
+          "name": "Rope Grip Hold",
+          "steps": [
+            "Stand on the board and hold the handles with the rope slightly taut.",
+            "Pull the handles to the sides of your body and hold.",
+            "Grip the handles firmly for the set duration."
+          ],
+          "tips": ["The goal is to build grip strength."],
+          "commonMistakes": ["Shrugging your shoulders."]
+        },
+        "rope_overhead_press": {
+          "name": "Rope Overhead Press",
+          "steps": [
+            "Stand on the board with the handles at shoulder height and the rope behind your arms.",
+            "Press the handles straight up until your arms are almost straight.",
+            "Lower back to your shoulders in a controlled way."
+          ],
+          "tips": ["Tighten your abs so your back does not arch."],
+          "commonMistakes": ["Lower back arching."]
+        },
+        "rope_overhead_triceps": {
+          "name": "Overhead Triceps Extension",
+          "steps": [
+            "Stand on the board with the rope passing behind your back and the handles behind your head.",
+            "Point your elbows forward, close to your ears.",
+            "Straighten your arms overhead, then bend slowly."
+          ],
+          "tips": ["Keep your elbows close to your head."],
+          "commonMistakes": ["Elbows flaring out."]
+        },
+        "rope_row": {
+          "name": "Rope Bent-over Row",
+          "steps": [
+            "Stand on the board, hinge your hips about 45 degrees, back straight.",
+            "Pull the handles toward your waist while squeezing your shoulder blades.",
+            "Release slowly until your arms are straight."
+          ],
+          "tips": ["This exercise complements the yellow zone for your lats."],
+          "commonMistakes": ["Rounded back.", "Pulling with your shoulders instead of your back."]
+        },
+        "rope_upright_row": {
+          "name": "Rope Upright Row",
+          "steps": [
+            "Stand on the board with the handles in front of your thighs.",
+            "Pull the handles up to your chest, leading with your elbows.",
+            "Lower in a controlled way."
+          ],
+          "tips": ["Do not raise your elbows higher than your shoulders."],
+          "commonMistakes": ["Shrugging your shoulders to your ears."]
+        },
+        "rope_squat": {
+          "name": "Rope Squat",
+          "steps": [
+            "Stand on the board shoulder-width apart with the handles at shoulder height.",
+            "Sit your hips back as if sitting down, chest upright.",
+            "Drive through your heels to stand up."
+          ],
+          "tips": ["Keep your knees in line with your toes."],
+          "commonMistakes": ["Knees caving inward.", "Heels lifting."]
+        },
+        "rope_calf_raise": {
+          "name": "Rope Calf Raise",
+          "steps": [
+            "Stand on the board with the handles at shoulder height.",
+            "Raise your heels as high as possible and hold for 1 second.",
+            "Lower slowly and stretch your calves at the bottom."
+          ],
+          "tips": ["Hold onto a wall if you need balance."],
+          "commonMistakes": ["Going too fast without a pause."]
+        },
+        "rope_woodchop": {
+          "name": "Rope Woodchop",
+          "steps": [
+            "Stand on the board, holding the handle near one hip.",
+            "Pull diagonally upward across your body to the opposite side, rotating your torso.",
+            "Return slowly, repeat, then switch sides."
+          ],
+          "tips": ["The movement comes from your abs, not your arms."],
+          "commonMistakes": ["Twisting your knees and lower back."]
+        },
+        "rope_deadlift": {
+          "name": "Rope Romanian Deadlift",
+          "steps": [
+            "Stand on the board with the handles in front of your thighs, knees slightly bent.",
+            "Push your hips back and lower the handles along your thighs with a straight back.",
+            "Drive your hips forward to stand tall."
+          ],
+          "tips": ["Feel the stretch in the back of your thighs."],
+          "commonMistakes": ["Rounded back."]
+        },
+        "rope_thruster": {
+          "name": "Rope Squat to Press",
+          "steps": [
+            "Stand on the board with the handles at your shoulders.",
+            "Squat deep, then stand up while pressing the handles overhead.",
+            "Lower the handles to your shoulders and repeat."
+          ],
+          "tips": ["Use the drive from your legs to help your shoulders."],
+          "commonMistakes": ["Legs and arms not moving as one."]
+        }
+      },
+      "templates": {
+        "tpl_ne_beginner_full": "Beginner No-equipment",
+        "tpl_ne_medium_core": "Intermediate Core",
+        "tpl_board_beginner_full": "Beginner Board Full Body",
+        "tpl_board_chest_medium": "Chest & Triceps Intermediate",
+        "tpl_rope_upper_medium": "Rope Upper Body",
+        "tpl_board_hard_full": "Hard Board Full Body"
+      },
+      "device": {
+        "name": "Multifunction push-up board + resistance rope",
+        "zones": {
+          "BLUE": { "label": "Blue", "target": "Chest (pectoralis)" },
+          "RED": { "label": "Red", "target": "Shoulders (deltoid)" },
+          "YELLOW": { "label": "Yellow", "target": "Back (latissimus dorsi)" },
+          "GREEN": { "label": "Green", "target": "Triceps" }
+        },
+        "safetyNotes": [
+          "Place the board on a flat, non-slip floor and make sure it does not shift before you start.",
+          "Check the rope for cracks or frayed fibers before use. Do not use a damaged rope.",
+          "If you feel sharp pain in a joint (shoulder, elbow, wrist), stop exercising."
+        ]
+      }
+    }
+  }
+}
