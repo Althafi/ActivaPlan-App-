@@ -18,6 +18,23 @@ data class Routine(
     val items: List<RoutineItem>,
 )
 
+/** Batas rutinitas dari `docs/features/03-routines.md`. */
+object RoutineRules {
+    const val MIN_ITEMS = 1
+    const val MAX_ITEMS = 12
+    const val MAX_NAME_LENGTH = 40
+
+    val SETS = 1..6
+    val REPS = 1..50
+
+    /** Latihan durasi, dalam langkah [SECONDS_STEP]. */
+    val SECONDS = 5..180
+    const val SECONDS_STEP = 5
+    val REST_SECONDS = 15..180
+
+    fun isValidName(name: String): Boolean = name.trim().length in 1..MAX_NAME_LENGTH
+}
+
 /** [dayOfWeek]: 1 = Senin .. 7 = Minggu. [timeMinutes]: menit sejak 00:00. */
 @Serializable
 data class ScheduleEntry(

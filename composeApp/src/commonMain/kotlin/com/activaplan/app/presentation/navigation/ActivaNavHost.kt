@@ -1,23 +1,93 @@
 package com.activaplan.app.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
+import com.activaplan.app.presentation.detail.ExerciseDetailScreen
 import com.activaplan.app.presentation.explore.ExploreScreen
 import com.activaplan.app.presentation.home.HomeScreen
+import com.activaplan.app.presentation.routines.RoutineBuilderScreen
 import com.activaplan.app.presentation.routines.RoutinesScreen
+import com.activaplan.app.presentation.routines.TemplatePreviewScreen
 import com.activaplan.app.presentation.schedule.ScheduleScreen
 import com.activaplan.app.presentation.settings.SettingsScreen
 
 @Composable
 fun ActivaNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
     NavHost(navController, startDestination = TopLevelDestination.start.route, modifier = modifier) {
-        composable(TopLevelDestination.HOME.route) { HomeScreen() }
-        composable(TopLevelDestination.EXPLORE.route) { ExploreScreen() }
-        composable(TopLevelDestination.ROUTINES.route) { RoutinesScreen() }
+        composable(TopLevelDestination.HOME.route) {
+            HomeScreen(
+                onOpenSchedule = { navController.navigateToTab(TopLevelDestination.SCHEDULE) },
+                // Layar sesi (cek keselamatan lalu sesi) dikerjakan di sesi Fitur Sesi.
+                onStartWorkout = {},
+                onOpenTemplate = { navController.navigate(TemplatePreviewRoute(it)) },
+            )
+        }
+        composable(TopLevelDestination.EXPLORE.route) {
+            ExploreScreen(onOpenExercise = { navController.navigate(ExerciseDetailRoute(it)) })
+        }
+        composable<ExerciseDetailRoute> { entry ->
+            ExerciseDetailScreen(
+                id = entry.toRoute<ExerciseDetailRoute>().id,
+                onBack = { navController.popBackStack() },
+                // Turun/Naik level menggantikan layar ini agar Kembali tetap menuju Jelajah.
+                onOpenExercise = { id ->
+                    navController.navigate(ExerciseDetailRoute(id)) { popUpTo<ExerciseDetailRoute> { inclusive = true } }
+                },
+            )
+        }
+        composable(TopLevelDestination.ROUTINES.route) { entry ->
+            val saved by entry.savedStateHandle.getStateFlow(ROUTINE_SAVED_KEY, false).collectAsStateWithLifecycle()
+            RoutinesScreen(
+                onCreate = { navController.navigate(RoutineBuilderRoute()) },
+                onEdit = { navController.navigate(RoutineBuilderRoute(it)) },
+                // Layar sesi dikerjakan di sesi Fitur Sesi.
+                onStart = {},
+                onUseTemplate = { navController.navigate(RoutineBuilderRoute(it)) },
+                onOpenTemplate = { navController.navigate(TemplatePreviewRoute(it)) },
+                savedNotice = saved,
+                onSavedNoticeShown = { entry.savedStateHandle[ROUTINE_SAVED_KEY] = false },
+            )
+        }
+        composable<RoutineBuilderRoute> { entry ->
+            val picked by entry.savedStateHandle.getStateFlow<String?>(PICKED_EXERCISE_KEY, null).collectAsStateWithLifecycle()
+            RoutineBuilderScreen(
+                routineId = entry.toRoute<RoutineBuilderRoute>().routineId,
+                pickedExerciseId = picked,
+                onPickedConsumed = { entry.savedStateHandle[PICKED_EXERCISE_KEY] = null },
+                onBack = { navController.popBackStack() },
+                onAddExercise = { navController.navigate(ExercisePickerRoute) },
+                onSaved = {
+                    navController.previousBackStackEntry?.savedStateHandle?.set(ROUTINE_SAVED_KEY, true)
+                    navController.popBackStack()
+                },
+            )
+        }
+        composable<ExercisePickerRoute> {
+            ExploreScreen(
+                onOpenExercise = { id ->
+                    navController.previousBackStackEntry?.savedStateHandle?.set(PICKED_EXERCISE_KEY, id)
+                    navController.popBackStack()
+                },
+                onBack = { navController.popBackStack() },
+            )
+        }
+        composable<TemplatePreviewRoute> { entry ->
+            TemplatePreviewScreen(
+                id = entry.toRoute<TemplatePreviewRoute>().id,
+                onBack = { navController.popBackStack() },
+                // Salinan sudah tersimpan; Builder menggantikan pratinjau agar Kembali menuju layar asal.
+                onUsed = { routineId ->
+                    navController.navigate(RoutineBuilderRoute(routineId)) { popUpTo<TemplatePreviewRoute> { inclusive = true } }
+                },
+            )
+        }
         composable(TopLevelDestination.SCHEDULE.route) { ScheduleScreen() }
         composable(TopLevelDestination.SETTINGS.route) { SettingsScreen() }
     }

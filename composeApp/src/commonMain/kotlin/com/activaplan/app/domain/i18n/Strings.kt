@@ -4,6 +4,7 @@ import com.activaplan.app.domain.model.AppLanguage
 import com.activaplan.app.domain.model.BoardZone
 import com.activaplan.app.domain.model.Category
 import com.activaplan.app.domain.model.Difficulty
+import com.activaplan.app.domain.model.Exercise
 import com.activaplan.app.domain.model.Mode
 import com.activaplan.app.domain.model.SessionStatus
 import com.activaplan.app.domain.model.ThemeMode
@@ -89,6 +90,23 @@ class Strings(val language: Language) {
             AppLanguage.EN -> StringKey.LANGUAGE_EN
         },
     )
+
+    /** Ringkasan kartu Jelajah; latihan durasi memakai "dtk", bukan "rep". */
+    fun summary(exercise: Exercise): String = if (exercise.reps != null) {
+        format(StringKey.EXPLORE_SUMMARY_REPS, exercise.sets, exercise.reps, exercise.restSeconds)
+    } else {
+        format(StringKey.EXPLORE_SUMMARY_SECONDS, exercise.sets, exercise.durationSeconds ?: 0, exercise.restSeconds)
+    }
+
+    /** Satuan tile kerja di Detail: "rep" untuk latihan repetisi, "detik" untuk latihan durasi. */
+    fun workUnit(exercise: Exercise): String =
+        get(if (exercise.reps != null) StringKey.DETAIL_UNIT_REP else StringKey.DETAIL_UNIT_SECONDS)
+
+    /** Nama hari tiga huruf ("Sen", "Min"); [dayOfWeek]: 1 = Senin .. 7 = Minggu. */
+    fun dayShort(dayOfWeek: Int): String {
+        require(dayOfWeek in 1..7) { "dayOfWeek harus 1..7, bukan $dayOfWeek" }
+        return get(StringKey.entries.first { it.name == "DAY_SHORT_$dayOfWeek" })
+    }
 
     /** [dayOfWeek]: 1 = Senin .. 7 = Minggu. */
     fun dayName(dayOfWeek: Int): String {

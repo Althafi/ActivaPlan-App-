@@ -1,7 +1,9 @@
 package com.activaplan.app.data.repository
 
 import com.activaplan.app.data.local.UserDataStore
+import com.activaplan.app.domain.model.AddToRoutineResult
 import com.activaplan.app.domain.model.Routine
+import com.activaplan.app.domain.model.RoutineItem
 import com.activaplan.app.domain.model.ScheduleEntry
 import com.activaplan.app.domain.model.SessionLog
 import com.activaplan.app.domain.model.Settings
@@ -32,6 +34,26 @@ class UserDataRepository(
     /** Menambah rutinitas baru, atau mengganti yang ber-ID sama. */
     suspend fun saveRoutine(routine: Routine) = store.update { d ->
         d.copy(routines = d.routines.upsert(routine) { it.id })
+    }
+
+    /** Menambah [item] di akhir rutinitas [routineId] secara atomik; ditolak bila rutinitas tidak ada atau sudah berisi [maxItems] item. */
+    suspend fun appendRoutineItem(routineId: String, item: RoutineItem, maxItems: Int): AddToRoutineResult {
+        var result: AddToRoutineResult = AddToRoutineResult.RoutineNotFound
+        store.update { d ->
+            val routine = d.routines.firstOrNull { it.id == routineId }
+            when {
+                routine == null -> d
+                routine.items.size >= maxItems -> {
+                    result = AddToRoutineResult.RoutineFull
+                    d
+                }
+                else -> {
+                    result = AddToRoutineResult.Added(routine.name)
+                    d.copy(routines = d.routines.upsert(routine.copy(items = routine.items + item)) { it.id })
+                }
+            }
+        }
+        return result
     }
 
     /** Menghapus rutinitas beserta jadwal yang menunjuk padanya. */

@@ -8,6 +8,19 @@ import com.activaplan.app.data.repository.ComposeResourceExerciseDataSource
 import com.activaplan.app.data.repository.ExerciseDataSource
 import com.activaplan.app.data.repository.ExerciseRepository
 import com.activaplan.app.data.repository.UserDataRepository
+import com.activaplan.app.domain.time.LocalClock
+import com.activaplan.app.domain.time.SystemLocalClock
+import com.activaplan.app.domain.usecase.AddExerciseToRoutineUseCase
+import com.activaplan.app.domain.usecase.CreateRoutineFromTemplateUseCase
+import com.activaplan.app.domain.usecase.DeleteRoutineUseCase
+import com.activaplan.app.domain.usecase.EstimateRoutineMinutesUseCase
+import com.activaplan.app.domain.usecase.FilterExercisesUseCase
+import com.activaplan.app.domain.usecase.GetExerciseDetailUseCase
+import com.activaplan.app.domain.usecase.GetTemplateDetailUseCase
+import com.activaplan.app.domain.usecase.LoadRoutineDraftUseCase
+import com.activaplan.app.domain.usecase.ObserveHomeUseCase
+import com.activaplan.app.domain.usecase.ObserveRoutinesUseCase
+import com.activaplan.app.domain.usecase.SaveRoutineUseCase
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -29,6 +42,18 @@ val commonModule = module {
     single { ExerciseRepository(get(), get()) }
     single { UserDataStore(get(), get()) }
     single { UserDataRepository(get(), get()) }
+    single<LocalClock> { SystemLocalClock }
+    factory { ObserveHomeUseCase(get(), get(), get()) }
+    factory { FilterExercisesUseCase() }
+    factory { GetExerciseDetailUseCase(get()) }
+    factory { AddExerciseToRoutineUseCase(get()) }
+    factory { EstimateRoutineMinutesUseCase() }
+    factory { ObserveRoutinesUseCase(get(), get(), get()) }
+    factory { LoadRoutineDraftUseCase(get(), get()) }
+    factory { SaveRoutineUseCase(get()) }
+    factory { DeleteRoutineUseCase(get()) }
+    factory { CreateRoutineFromTemplateUseCase(get(), get()) }
+    factory { GetTemplateDetailUseCase(get(), get()) }
 }
 
 fun appModules(): List<Module> = listOf(platformModule(), commonModule)
