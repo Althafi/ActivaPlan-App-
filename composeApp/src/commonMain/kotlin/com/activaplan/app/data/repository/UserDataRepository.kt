@@ -72,6 +72,22 @@ class UserDataRepository(
         d.copy(schedule = d.schedule.filterNot { it.id == id })
     }
 
+    /** Mengganti seluruh jadwal secara atomik dari jadwal dan rutinitas saat ini, mis. untuk memeriksa bentrok lalu menulis. */
+    suspend fun updateSchedule(transform: (routines: List<Routine>, schedule: List<ScheduleEntry>) -> List<ScheduleEntry>) =
+        store.update { d -> d.copy(schedule = transform(d.routines, d.schedule)) }
+
+    /** Membuang entri jadwal yang rutinitasnya sudah tidak ada. Mengembalikan jumlah yang dibuang. */
+    suspend fun removeOrphanedSchedule(): Int {
+        var removed = 0
+        store.update { d ->
+            val routineIds = d.routines.mapTo(mutableSetOf()) { it.id }
+            val kept = d.schedule.filter { it.routineId in routineIds }
+            removed = d.schedule.size - kept.size
+            d.copy(schedule = kept)
+        }
+        return removed
+    }
+
     /** Menambah log sesi; tidak melakukan apa pun jika `keepHistory` mati. Mengembalikan true bila log ditulis. */
     suspend fun appendSessionLog(log: SessionLog): Boolean {
         var written = false
