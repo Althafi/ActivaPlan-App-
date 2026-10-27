@@ -16,17 +16,20 @@ import com.activaplan.app.presentation.routines.RoutineBuilderScreen
 import com.activaplan.app.presentation.routines.RoutinesScreen
 import com.activaplan.app.presentation.routines.TemplatePreviewScreen
 import com.activaplan.app.presentation.schedule.ScheduleScreen
+import com.activaplan.app.presentation.session.SessionScreen
 import com.activaplan.app.presentation.settings.SettingsScreen
 
 @Composable
 fun ActivaNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
     NavHost(navController, startDestination = TopLevelDestination.start.route, modifier = modifier) {
-        composable(TopLevelDestination.HOME.route) {
+        composable(TopLevelDestination.HOME.route) { entry ->
+            val dataCleared by entry.savedStateHandle.getStateFlow(DATA_CLEARED_KEY, false).collectAsStateWithLifecycle()
             HomeScreen(
                 onOpenSchedule = { navController.navigateToTab(TopLevelDestination.SCHEDULE) },
-                // Layar sesi (cek keselamatan lalu sesi) dikerjakan di sesi Fitur Sesi.
-                onStartWorkout = {},
+                onStartWorkout = { navController.navigate(SessionRoute(it.routineId)) { launchSingleTop = true } },
                 onOpenTemplate = { navController.navigate(TemplatePreviewRoute(it)) },
+                dataClearedNotice = dataCleared,
+                onDataClearedNoticeShown = { entry.savedStateHandle[DATA_CLEARED_KEY] = false },
             )
         }
         composable(TopLevelDestination.EXPLORE.route) {
@@ -47,8 +50,7 @@ fun ActivaNavHost(navController: NavHostController, modifier: Modifier = Modifie
             RoutinesScreen(
                 onCreate = { navController.navigate(RoutineBuilderRoute()) },
                 onEdit = { navController.navigate(RoutineBuilderRoute(it)) },
-                // Layar sesi dikerjakan di sesi Fitur Sesi.
-                onStart = {},
+                onStart = { navController.navigate(SessionRoute(it)) { launchSingleTop = true } },
                 onUseTemplate = { navController.navigate(RoutineBuilderRoute(it)) },
                 onOpenTemplate = { navController.navigate(TemplatePreviewRoute(it)) },
                 savedNotice = saved,
@@ -88,8 +90,29 @@ fun ActivaNavHost(navController: NavHostController, modifier: Modifier = Modifie
                 },
             )
         }
-        composable(TopLevelDestination.SCHEDULE.route) { ScheduleScreen() }
-        composable(TopLevelDestination.SETTINGS.route) { SettingsScreen() }
+        composable<SessionRoute> { entry ->
+            SessionScreen(
+                routineId = entry.toRoute<SessionRoute>().routineId,
+                onExit = { navController.popBackStack() },
+                // Layar riwayat belum ada; sementara menuju tab Jadwal.
+                onOpenHistory = {
+                    navController.popBackStack()
+                    navController.navigateToTab(TopLevelDestination.SCHEDULE)
+                },
+            )
+        }
+        composable(TopLevelDestination.SCHEDULE.route) {
+            ScheduleScreen(onCreateRoutine = { navController.navigate(RoutineBuilderRoute()) })
+        }
+        composable(TopLevelDestination.SETTINGS.route) {
+            SettingsScreen(
+                onDataCleared = {
+                    // Beranda selalu ada di dasar back stack; bendera dibaca saat entrinya tampil kembali.
+                    navController.getBackStackEntry(TopLevelDestination.HOME.route).savedStateHandle[DATA_CLEARED_KEY] = true
+                    navController.navigateToTab(TopLevelDestination.HOME)
+                },
+            )
+        }
     }
 }
 

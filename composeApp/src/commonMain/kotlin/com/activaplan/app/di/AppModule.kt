@@ -8,19 +8,34 @@ import com.activaplan.app.data.repository.ComposeResourceExerciseDataSource
 import com.activaplan.app.data.repository.ExerciseDataSource
 import com.activaplan.app.data.repository.ExerciseRepository
 import com.activaplan.app.data.repository.UserDataRepository
+import com.activaplan.app.domain.reminder.ReminderSynchronizer
 import com.activaplan.app.domain.time.LocalClock
 import com.activaplan.app.domain.time.SystemLocalClock
 import com.activaplan.app.domain.usecase.AddExerciseToRoutineUseCase
+import com.activaplan.app.domain.usecase.ClearAllDataUseCase
+import com.activaplan.app.domain.usecase.ClearSessionHistoryUseCase
 import com.activaplan.app.domain.usecase.CreateRoutineFromTemplateUseCase
 import com.activaplan.app.domain.usecase.DeleteRoutineUseCase
+import com.activaplan.app.domain.usecase.DeleteScheduleEntryUseCase
 import com.activaplan.app.domain.usecase.EstimateRoutineMinutesUseCase
 import com.activaplan.app.domain.usecase.FilterExercisesUseCase
+import com.activaplan.app.domain.usecase.FinishSessionUseCase
 import com.activaplan.app.domain.usecase.GetExerciseDetailUseCase
 import com.activaplan.app.domain.usecase.GetTemplateDetailUseCase
 import com.activaplan.app.domain.usecase.LoadRoutineDraftUseCase
+import com.activaplan.app.domain.usecase.LoadSessionPlanUseCase
 import com.activaplan.app.domain.usecase.ObserveHomeUseCase
 import com.activaplan.app.domain.usecase.ObserveRoutinesUseCase
+import com.activaplan.app.domain.usecase.ObserveScheduleUseCase
+import com.activaplan.app.domain.usecase.ObserveSettingsUseCase
+import com.activaplan.app.domain.usecase.PruneScheduleUseCase
 import com.activaplan.app.domain.usecase.SaveRoutineUseCase
+import com.activaplan.app.domain.usecase.SaveScheduleUseCase
+import com.activaplan.app.domain.usecase.SetDefaultTimeUseCase
+import com.activaplan.app.domain.usecase.SetKeepHistoryUseCase
+import com.activaplan.app.domain.usecase.SetRemindersEnabledUseCase
+import com.activaplan.app.domain.usecase.SetScheduleReminderUseCase
+import com.activaplan.app.domain.usecase.SetThemeUseCase
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -54,6 +69,21 @@ val commonModule = module {
     factory { DeleteRoutineUseCase(get()) }
     factory { CreateRoutineFromTemplateUseCase(get(), get()) }
     factory { GetTemplateDetailUseCase(get(), get()) }
+    factory { LoadSessionPlanUseCase(get(), get()) }
+    factory { FinishSessionUseCase(get(), get()) }
+    factory { ObserveScheduleUseCase(get(), get(), get()) }
+    factory { SaveScheduleUseCase(get()) }
+    factory { DeleteScheduleEntryUseCase(get()) }
+    factory { SetScheduleReminderUseCase(get()) }
+    factory { PruneScheduleUseCase(get()) }
+    factory { ObserveSettingsUseCase(get()) }
+    factory { SetThemeUseCase(get()) }
+    factory { SetRemindersEnabledUseCase(get()) }
+    factory { SetDefaultTimeUseCase(get()) }
+    factory { SetKeepHistoryUseCase(get()) }
+    factory { ClearSessionHistoryUseCase(get()) }
+    factory { ClearAllDataUseCase(get()) }
+    single { ReminderSynchronizer(get(), get(), get()) }
 }
 
 fun appModules(): List<Module> = listOf(platformModule(), commonModule)

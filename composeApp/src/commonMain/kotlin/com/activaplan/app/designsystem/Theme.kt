@@ -12,6 +12,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.font.FontFamily
 import com.activaplan.app.domain.i18n.Language
 import com.activaplan.app.domain.i18n.Strings
+import com.activaplan.app.domain.model.ThemeMode
 
 private fun ActivaColors.toMaterial() = if (isDark) {
     darkColorScheme(
@@ -29,6 +30,13 @@ private fun ActivaColors.toMaterial() = if (isDark) {
         outline = border, outlineVariant = border, error = error, onError = onError, errorContainer = errorSoft,
         onErrorContainer = error,
     )
+}
+
+/** Apakah tema gelap dipakai; [ThemeMode.SYSTEM] mengikuti mode gelap perangkat ([systemDark]). */
+fun ThemeMode.isDark(systemDark: Boolean): Boolean = when (this) {
+    ThemeMode.LIGHT -> false
+    ThemeMode.DARK -> true
+    ThemeMode.SYSTEM -> systemDark
 }
 
 internal val LocalActivaTypography = staticCompositionLocalOf { activaTypography(FontFamily.Default) }

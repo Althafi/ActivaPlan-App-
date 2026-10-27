@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 
 /** Ikon garis (kotak 24) untuk tombol dan alert. Dekoratif: teks di sebelahnya yang dibaca screen reader. */
 enum class ActivaIconKind {
-    CHECK, CLOSE, PLUS, TRASH, CALENDAR, WARNING, INFO, HOME, SEARCH, LIST, SLIDERS, BELL, PLAY, DUMBBELL, CLOCK, FLAME,
-    CHEVRON_LEFT, ARROW_DOWN, ARROW_UP, MINUS, DRAG_HANDLE,
+    CHECK, CLOSE, PLUS, TRASH, CALENDAR, WARNING, INFO, HOME, SEARCH, LIST, SLIDERS, BELL, BELL_OFF, PLAY, DUMBBELL, CLOCK, FLAME,
+    CHEVRON_LEFT, ARROW_DOWN, ARROW_UP, MINUS, DRAG_HANDLE, PAUSE, SKIP_NEXT, REFRESH,
 }
 
 @Composable
@@ -88,7 +88,7 @@ fun ActivaIcon(kind: ActivaIconKind, tint: Color, modifier: Modifier = Modifier,
                 drawCircle(tint, 3f * k, o(12f, 8f), style = stroke)
                 drawCircle(tint, 3f * k, o(18f, 15f), style = stroke)
             }
-            ActivaIconKind.BELL -> {
+            ActivaIconKind.BELL, ActivaIconKind.BELL_OFF -> {
                 drawPath(
                     Path().apply {
                         moveTo(6.5f * k, 17.5f * k); lineTo(6.5f * k, 11f * k)
@@ -106,6 +106,7 @@ fun ActivaIcon(kind: ActivaIconKind, tint: Color, modifier: Modifier = Modifier,
                     },
                     tint, style = stroke,
                 )
+                if (kind == ActivaIconKind.BELL_OFF) line(4f, 3.5f, 20f, 20.5f)
             }
             ActivaIconKind.PLAY -> drawPath(
                 Path().apply { moveTo(7.5f * k, 5f * k); lineTo(19f * k, 12f * k); lineTo(7.5f * k, 19f * k); close() },
@@ -130,6 +131,24 @@ fun ActivaIcon(kind: ActivaIconKind, tint: Color, modifier: Modifier = Modifier,
             ActivaIconKind.ARROW_UP -> {
                 line(12f, 5f, 12f, 19f)
                 drawPath(Path().apply { moveTo(6.5f * k, 10.5f * k); lineTo(12f * k, 5f * k); lineTo(17.5f * k, 10.5f * k) }, tint, style = stroke)
+            }
+            ActivaIconKind.PAUSE -> { line(9f, 5.5f, 9f, 18.5f); line(15f, 5.5f, 15f, 18.5f) }
+            ActivaIconKind.SKIP_NEXT -> {
+                drawPath(
+                    Path().apply { moveTo(6f * k, 5.5f * k); lineTo(15f * k, 12f * k); lineTo(6f * k, 18.5f * k); close() },
+                    tint, style = stroke,
+                )
+                line(18.5f, 5.5f, 18.5f, 18.5f)
+            }
+            ActivaIconKind.REFRESH -> {
+                drawArc(
+                    tint, startAngle = -60f, sweepAngle = 300f, useCenter = false,
+                    topLeft = o(5f, 5f), size = Size(14 * k, 14 * k), style = stroke,
+                )
+                drawPath(
+                    Path().apply { moveTo(12.5f * k, 2.5f * k); lineTo(16.5f * k, 5.2f * k); lineTo(12.8f * k, 8.2f * k) },
+                    tint, style = stroke,
+                )
             }
             ActivaIconKind.FLAME -> drawPath(
                 Path().apply {

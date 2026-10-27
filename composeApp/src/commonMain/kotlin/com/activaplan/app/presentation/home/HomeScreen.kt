@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -20,10 +21,15 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
@@ -43,8 +49,10 @@ import com.activaplan.app.designsystem.components.ActivaButton
 import com.activaplan.app.designsystem.components.ActivaCard
 import com.activaplan.app.designsystem.components.ActivaIcon
 import com.activaplan.app.designsystem.components.ActivaIconKind
+import com.activaplan.app.designsystem.components.ActivaSnackbarHost
 import com.activaplan.app.designsystem.components.ButtonStyle
 import com.activaplan.app.designsystem.components.LevelBadge
+import com.activaplan.app.designsystem.components.showActiva
 import com.activaplan.app.domain.i18n.Strings
 import com.activaplan.app.domain.i18n.StringKey
 import com.activaplan.app.domain.model.Difficulty
@@ -58,6 +66,7 @@ import com.activaplan.app.domain.model.TodayWorkout
 import com.activaplan.app.domain.model.WeekStreak
 import com.activaplan.app.domain.time.formatClock
 import com.activaplan.app.domain.usecase.ObserveHomeUseCase
+import kotlinx.coroutines.flow.filter
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 
@@ -71,11 +80,29 @@ fun HomeScreen(
     onStartWorkout: (TodayWorkout) -> Unit,
     onOpenTemplate: (String) -> Unit,
     modifier: Modifier = Modifier,
+    dataClearedNotice: Boolean = false,
+    onDataClearedNoticeShown: () -> Unit = {},
 ) {
     val observeHome = koinInject<ObserveHomeUseCase>()
     val viewModel = viewModel { HomeViewModel(observeHome) }
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    HomeContent(state, onOpenSchedule, onStartWorkout, onOpenTemplate, viewModel::reload, modifier)
+    val strings = ActivaPlanTheme.strings
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // Bendera dibersihkan sebelum snackbar tampil; efek tidak boleh dikunci pada bendera itu agar tidak dibatalkan.
+    val noticeState = rememberUpdatedState(dataClearedNotice)
+    val noticeShown = rememberUpdatedState(onDataClearedNoticeShown)
+    LaunchedEffect(strings) {
+        snapshotFlow { noticeState.value }.filter { it }.collect {
+            noticeShown.value()
+            snackbarHostState.showActiva(strings[StringKey.ALERT_ALL_DATA_DELETED])
+        }
+    }
+
+    Box(modifier) {
+        HomeContent(state, onOpenSchedule, onStartWorkout, onOpenTemplate, viewModel::reload)
+        ActivaSnackbarHost(snackbarHostState, Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(bottom = 12.dp))
+    }
 }
 
 @Composable

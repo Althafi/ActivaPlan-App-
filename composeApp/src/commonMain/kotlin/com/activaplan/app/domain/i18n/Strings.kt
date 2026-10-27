@@ -108,6 +108,12 @@ class Strings(val language: Language) {
         return get(StringKey.entries.first { it.name == "DAY_SHORT_$dayOfWeek" })
     }
 
+    /** [month]: 1 = Januari .. 12 = Desember. */
+    fun monthName(month: Int): String {
+        require(month in 1..12) { "month harus 1..12, bukan $month" }
+        return get(StringKey.entries.first { it.name == "MONTH_$month" })
+    }
+
     /** [dayOfWeek]: 1 = Senin .. 7 = Minggu. */
     fun dayName(dayOfWeek: Int): String {
         require(dayOfWeek in 1..7) { "dayOfWeek harus 1..7, bukan $dayOfWeek" }
