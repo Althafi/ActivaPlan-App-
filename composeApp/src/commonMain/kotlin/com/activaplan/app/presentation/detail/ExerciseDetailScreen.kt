@@ -34,6 +34,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -57,6 +58,7 @@ import com.activaplan.app.designsystem.components.ActivaTextField
 import com.activaplan.app.designsystem.components.AlertType
 import com.activaplan.app.designsystem.components.BoardDiagram
 import com.activaplan.app.designsystem.components.ButtonStyle
+import com.activaplan.app.designsystem.components.ExerciseImageView
 import com.activaplan.app.designsystem.components.LevelBadge
 import com.activaplan.app.designsystem.components.ZoneChip
 import com.activaplan.app.designsystem.components.showActiva
@@ -235,12 +237,16 @@ private fun Hero(exercise: Exercise, onBack: () -> Unit) {
     ) {
         BackButton(onBack)
         Spacer(Modifier.height(12.dp))
-        if (exercise.mode == Mode.NO_EQUIPMENT) {
-            Box(Modifier.fillMaxWidth().height(96.dp), contentAlignment = Alignment.Center) {
-                ActivaIcon(ActivaIconKind.DUMBBELL, c.textMuted, size = 48.dp)
+        ExerciseImageView(exercise.images.firstOrNull(), Modifier.clip(RoundedCornerShape(16.dp))) {
+            if (exercise.mode == Mode.NO_EQUIPMENT) {
+                Box(Modifier.fillMaxWidth().height(96.dp), contentAlignment = Alignment.Center) {
+                    ActivaIcon(ActivaIconKind.DUMBBELL, c.textMuted, size = 48.dp)
+                }
+            } else {
+                Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    BoardDiagram(exercise.boardZone, Modifier.fillMaxWidth(0.886f))
+                }
             }
-        } else {
-            BoardDiagram(exercise.boardZone, Modifier.fillMaxWidth(0.886f).align(Alignment.CenterHorizontally))
         }
         Spacer(Modifier.height(12.dp))
         val zone = exercise.boardZone

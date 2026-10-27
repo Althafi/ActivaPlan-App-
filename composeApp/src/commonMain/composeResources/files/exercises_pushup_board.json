@@ -57,7 +57,15 @@
       ],
       "progressionId": "pb_chest_pushup",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "pb_chest_knee_pushup.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Dada dari Lutut",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_chest_pushup",
@@ -89,7 +97,15 @@
       ],
       "progressionId": "pb_chest_decline",
       "regressionId": "pb_chest_knee_pushup",
-      "images": []
+      "images": [
+        {
+          "file": "pb_chest_pushup.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Dada Standar",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_chest_decline",
@@ -120,7 +136,15 @@
       ],
       "progressionId": null,
       "regressionId": "pb_chest_pushup",
-      "images": []
+      "images": [
+        {
+          "file": "pb_chest_decline.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Dada Kaki Ditinggikan",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_shoulder_knee",
@@ -150,7 +174,15 @@
       ],
       "progressionId": "pb_shoulder_pike",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "pb_shoulder_knee.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Bahu dari Lutut",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_shoulder_pike",
@@ -181,7 +213,15 @@
       ],
       "progressionId": "pb_shoulder_pike_elevated",
       "regressionId": "pb_shoulder_knee",
-      "images": []
+      "images": [
+        {
+          "file": "pb_shoulder_pike.webp",
+          "alt": "Posisi awal dan akhir gerakan: Pike Push-up",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_shoulder_pike_elevated",
@@ -211,7 +251,15 @@
       ],
       "progressionId": null,
       "regressionId": "pb_shoulder_pike",
-      "images": []
+      "images": [
+        {
+          "file": "pb_shoulder_pike_elevated.webp",
+          "alt": "Posisi awal dan akhir gerakan: Pike Push-up Kaki Ditinggikan",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_back_plank",
@@ -243,7 +291,15 @@
       ],
       "progressionId": "pb_back_pushup_pause",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "pb_back_plank.webp",
+          "alt": "Posisi tahan: Plank Zona Kuning",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_back_pushup_pause",
@@ -274,7 +330,15 @@
       ],
       "progressionId": "pb_back_tempo",
       "regressionId": "pb_back_plank",
-      "images": []
+      "images": [
+        {
+          "file": "pb_back_pushup_pause.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Zona Kuning dengan Jeda",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_back_tempo",
@@ -305,7 +369,15 @@
       ],
       "progressionId": null,
       "regressionId": "pb_back_pushup_pause",
-      "images": []
+      "images": [
+        {
+          "file": "pb_back_tempo.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Zona Kuning Tempo Lambat",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_triceps_knee",
@@ -334,7 +406,15 @@
       ],
       "progressionId": "pb_triceps_pushup",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "pb_triceps_knee.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Triceps dari Lutut",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_triceps_pushup",
@@ -364,7 +444,15 @@
       ],
       "progressionId": "pb_triceps_decline",
       "regressionId": "pb_triceps_knee",
-      "images": []
+      "images": [
+        {
+          "file": "pb_triceps_pushup.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Triceps",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "pb_triceps_decline",
@@ -394,7 +482,15 @@
       ],
       "progressionId": null,
       "regressionId": "pb_triceps_pushup",
-      "images": []
+      "images": [
+        {
+          "file": "pb_triceps_decline.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Triceps Kaki Ditinggikan",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_bicep_curl",
@@ -425,7 +521,15 @@
       ],
       "progressionId": "rope_overhead_triceps",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "rope_bicep_curl.webp",
+          "alt": "Posisi awal dan akhir gerakan: Bicep Curl dengan Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_grip_hold",
@@ -454,7 +558,15 @@
       ],
       "progressionId": null,
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "rope_grip_hold.webp",
+          "alt": "Posisi tahan: Tahan Genggaman Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_overhead_press",
@@ -484,7 +596,15 @@
       ],
       "progressionId": null,
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "rope_overhead_press.webp",
+          "alt": "Posisi awal dan akhir gerakan: Overhead Press dengan Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_overhead_triceps",
@@ -513,7 +633,15 @@
       ],
       "progressionId": null,
       "regressionId": "rope_bicep_curl",
-      "images": []
+      "images": [
+        {
+          "file": "rope_overhead_triceps.webp",
+          "alt": "Posisi awal dan akhir gerakan: Triceps Extension di Atas Kepala",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_row",
@@ -544,7 +672,15 @@
       ],
       "progressionId": "rope_deadlift",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "rope_row.webp",
+          "alt": "Posisi awal dan akhir gerakan: Dayung Membungkuk dengan Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_upright_row",
@@ -574,7 +710,15 @@
       ],
       "progressionId": null,
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "rope_upright_row.webp",
+          "alt": "Posisi awal dan akhir gerakan: Upright Row dengan Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_squat",
@@ -605,7 +749,15 @@
       ],
       "progressionId": "rope_thruster",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "rope_squat.webp",
+          "alt": "Posisi awal dan akhir gerakan: Squat dengan Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_calf_raise",
@@ -634,7 +786,15 @@
       ],
       "progressionId": null,
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "rope_calf_raise.webp",
+          "alt": "Posisi awal dan akhir gerakan: Calf Raise dengan Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_woodchop",
@@ -664,7 +824,15 @@
       ],
       "progressionId": null,
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "rope_woodchop.webp",
+          "alt": "Posisi awal dan akhir gerakan: Woodchop Perut dengan Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_deadlift",
@@ -695,7 +863,15 @@
       ],
       "progressionId": null,
       "regressionId": "rope_row",
-      "images": []
+      "images": [
+        {
+          "file": "rope_deadlift.webp",
+          "alt": "Posisi awal dan akhir gerakan: Romanian Deadlift dengan Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rope_thruster",
@@ -726,7 +902,15 @@
       ],
       "progressionId": null,
       "regressionId": "rope_squat",
-      "images": []
+      "images": [
+        {
+          "file": "rope_thruster.webp",
+          "alt": "Posisi awal dan akhir gerakan: Squat to Press dengan Tali",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     }
   ],
   "templates": [

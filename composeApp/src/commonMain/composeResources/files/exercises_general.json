@@ -31,7 +31,15 @@
       ],
       "progressionId": "ne_chest_knee_pushup",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "ne_chest_wall_pushup.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Dinding",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_chest_knee_pushup",
@@ -61,7 +69,15 @@
       ],
       "progressionId": "ne_chest_pushup",
       "regressionId": "ne_chest_wall_pushup",
-      "images": []
+      "images": [
+        {
+          "file": "ne_chest_knee_pushup.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Lutut",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_chest_pushup",
@@ -93,7 +109,15 @@
       ],
       "progressionId": "ne_chest_diamond",
       "regressionId": "ne_chest_knee_pushup",
-      "images": []
+      "images": [
+        {
+          "file": "ne_chest_pushup.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Standar",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_chest_diamond",
@@ -123,7 +147,15 @@
       ],
       "progressionId": null,
       "regressionId": "ne_chest_pushup",
-      "images": []
+      "images": [
+        {
+          "file": "ne_chest_diamond.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Diamond",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_abs_dead_bug",
@@ -152,7 +184,15 @@
       ],
       "progressionId": "ne_abs_crunch",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "ne_abs_dead_bug.webp",
+          "alt": "Posisi awal dan akhir gerakan: Dead Bug",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_abs_crunch",
@@ -181,7 +221,15 @@
       ],
       "progressionId": "ne_abs_leg_raise",
       "regressionId": "ne_abs_dead_bug",
-      "images": []
+      "images": [
+        {
+          "file": "ne_abs_crunch.webp",
+          "alt": "Posisi awal dan akhir gerakan: Crunch",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_abs_leg_raise",
@@ -210,7 +258,15 @@
       ],
       "progressionId": null,
       "regressionId": "ne_abs_crunch",
-      "images": []
+      "images": [
+        {
+          "file": "ne_abs_leg_raise.webp",
+          "alt": "Posisi awal dan akhir gerakan: Leg Raise",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_abs_plank",
@@ -240,7 +296,15 @@
       ],
       "progressionId": null,
       "regressionId": "ne_abs_dead_bug",
-      "images": []
+      "images": [
+        {
+          "file": "ne_abs_plank.webp",
+          "alt": "Posisi tahan: Plank",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_arm_bench_dip",
@@ -270,7 +334,15 @@
       ],
       "progressionId": "ne_arm_diamond_knee",
       "regressionId": "ne_arm_wall_triceps",
-      "images": []
+      "images": [
+        {
+          "file": "ne_arm_bench_dip.webp",
+          "alt": "Posisi awal dan akhir gerakan: Dip Kursi",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_arm_wall_triceps",
@@ -298,7 +370,15 @@
       ],
       "progressionId": "ne_arm_bench_dip",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "ne_arm_wall_triceps.webp",
+          "alt": "Posisi awal dan akhir gerakan: Push-up Dinding Sempit",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_arm_diamond_knee",
@@ -327,7 +407,15 @@
       ],
       "progressionId": null,
       "regressionId": "ne_arm_bench_dip",
-      "images": []
+      "images": [
+        {
+          "file": "ne_arm_diamond_knee.webp",
+          "alt": "Posisi awal dan akhir gerakan: Diamond Push-up Lutut",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_shoulder_arm_circles",
@@ -355,7 +443,15 @@
       ],
       "progressionId": "ne_shoulder_pike_knee",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "ne_shoulder_arm_circles.webp",
+          "alt": "Posisi awal dan akhir gerakan: Putaran Lengan",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_shoulder_pike_knee",
@@ -385,7 +481,15 @@
       ],
       "progressionId": "ne_shoulder_pike",
       "regressionId": "ne_shoulder_arm_circles",
-      "images": []
+      "images": [
+        {
+          "file": "ne_shoulder_pike_knee.webp",
+          "alt": "Posisi awal dan akhir gerakan: Pike Push-up Lutut",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_shoulder_pike",
@@ -414,7 +518,15 @@
       ],
       "progressionId": null,
       "regressionId": "ne_shoulder_pike_knee",
-      "images": []
+      "images": [
+        {
+          "file": "ne_shoulder_pike.webp",
+          "alt": "Posisi awal dan akhir gerakan: Pike Push-up",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_back_superman",
@@ -444,7 +556,15 @@
       ],
       "progressionId": "ne_back_bird_dog",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "ne_back_superman.webp",
+          "alt": "Posisi awal dan akhir gerakan: Superman",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_back_bird_dog",
@@ -475,7 +595,15 @@
       ],
       "progressionId": "ne_back_reverse_plank",
       "regressionId": "ne_back_superman",
-      "images": []
+      "images": [
+        {
+          "file": "ne_back_bird_dog.webp",
+          "alt": "Posisi awal dan akhir gerakan: Bird Dog",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_back_reverse_plank",
@@ -506,7 +634,15 @@
       ],
       "progressionId": null,
       "regressionId": "ne_back_bird_dog",
-      "images": []
+      "images": [
+        {
+          "file": "ne_back_reverse_plank.webp",
+          "alt": "Posisi tahan: Reverse Plank",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_leg_squat",
@@ -536,7 +672,15 @@
       ],
       "progressionId": "ne_leg_lunge",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "ne_leg_squat.webp",
+          "alt": "Posisi awal dan akhir gerakan: Squat",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_leg_lunge",
@@ -566,7 +710,15 @@
       ],
       "progressionId": "ne_leg_jump_squat",
       "regressionId": "ne_leg_squat",
-      "images": []
+      "images": [
+        {
+          "file": "ne_leg_lunge.webp",
+          "alt": "Posisi awal dan akhir gerakan: Lunge",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_leg_jump_squat",
@@ -596,7 +748,15 @@
       ],
       "progressionId": null,
       "regressionId": "ne_leg_lunge",
-      "images": []
+      "images": [
+        {
+          "file": "ne_leg_jump_squat.webp",
+          "alt": "Posisi awal dan akhir gerakan: Jump Squat",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_full_march",
@@ -624,7 +784,15 @@
       ],
       "progressionId": "ne_full_burpee_no_jump",
       "regressionId": null,
-      "images": []
+      "images": [
+        {
+          "file": "ne_full_march.webp",
+          "alt": "Posisi awal dan akhir gerakan: Jalan di Tempat",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_full_burpee_no_jump",
@@ -653,7 +821,15 @@
       ],
       "progressionId": "ne_full_burpee",
       "regressionId": "ne_full_march",
-      "images": []
+      "images": [
+        {
+          "file": "ne_full_burpee_no_jump.webp",
+          "alt": "Posisi awal dan akhir gerakan: Burpee Tanpa Lompat",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "ne_full_burpee",
@@ -680,7 +856,15 @@
       ],
       "progressionId": null,
       "regressionId": "ne_full_burpee_no_jump",
-      "images": []
+      "images": [
+        {
+          "file": "ne_full_burpee.webp",
+          "alt": "Posisi awal dan akhir gerakan: Burpee",
+          "license": "OWN",
+          "author": "ActivaPlan",
+          "sourceUrl": null
+        }
+      ]
     }
   ],
   "templates": [
