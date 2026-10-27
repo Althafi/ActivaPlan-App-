@@ -18,6 +18,8 @@ data class ExerciseCatalog(
     val exercises: List<Exercise>,
     val templates: List<Template>,
     val dictionary: ExerciseDictionary,
+    /** Catatan keselamatan perangkat (`device.safetyNotes`) dalam bahasa sumber. */
+    val safetyNotes: List<String> = emptyList(),
 )
 
 /** Filter katalog; properti null berarti tidak memfilter. */
@@ -28,7 +30,11 @@ data class ExerciseFilter(
 )
 
 @Serializable
+private data class DeviceFile(val safetyNotes: List<String> = emptyList())
+
+@Serializable
 private data class ExerciseFile(
+    val device: DeviceFile? = null,
     val exercises: List<Exercise> = emptyList(),
     val templates: List<Template> = emptyList(),
 )
@@ -67,6 +73,12 @@ class ExerciseRepository(
         return l.catalog.templates.map { l.localizer.localize(it, language) }
     }
 
+    /** Catatan keselamatan board + tali; memakai teks sumber bila terjemahan tidak ada. */
+    suspend fun safetyNotes(language: Language): List<String> {
+        val l = loaded()
+        return l.localizer.deviceText(language)?.safetyNotes ?: l.catalog.safetyNotes
+    }
+
     private suspend fun loaded(): Loaded = mutex.withLock {
         cache ?: load().also { cache = it }
     }
@@ -79,6 +91,7 @@ class ExerciseRepository(
             exercises = files.flatMap { it.exercises },
             templates = files.flatMap { it.templates },
             dictionary = dictionary,
+            safetyNotes = files.flatMap { it.device?.safetyNotes.orEmpty() },
         )
         return Loaded(catalog, ExerciseLocalizer(dictionary))
     }
