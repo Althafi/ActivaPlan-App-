@@ -8,6 +8,7 @@ import androidx.compose.ui.unit.dp
 object ActivaShapes {
     val card = RoundedCornerShape(20.dp)
     val button = RoundedCornerShape(16.dp)
+    val thumbnail = RoundedCornerShape(16.dp)
     val chip = CircleShape
 }
 

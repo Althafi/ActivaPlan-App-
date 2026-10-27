@@ -17,7 +17,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 /** Ikon garis (kotak 24) untuk tombol dan alert. Dekoratif: teks di sebelahnya yang dibaca screen reader. */
-enum class ActivaIconKind { CHECK, CLOSE, PLUS, TRASH, CALENDAR, WARNING, INFO, HOME, SEARCH, LIST, SLIDERS }
+enum class ActivaIconKind {
+    CHECK, CLOSE, PLUS, TRASH, CALENDAR, WARNING, INFO, HOME, SEARCH, LIST, SLIDERS, BELL, PLAY, DUMBBELL, CLOCK, FLAME,
+    CHEVRON_LEFT, ARROW_DOWN, ARROW_UP, MINUS, DRAG_HANDLE,
+}
 
 @Composable
 fun ActivaIcon(kind: ActivaIconKind, tint: Color, modifier: Modifier = Modifier, size: Dp = 20.dp) {
@@ -34,6 +37,8 @@ fun ActivaIcon(kind: ActivaIconKind, tint: Color, modifier: Modifier = Modifier,
             )
             ActivaIconKind.CLOSE -> { line(6f, 6f, 18f, 18f); line(18f, 6f, 6f, 18f) }
             ActivaIconKind.PLUS -> { line(12f, 5f, 12f, 19f); line(5f, 12f, 19f, 12f) }
+            ActivaIconKind.MINUS -> line(5f, 12f, 19f, 12f)
+            ActivaIconKind.DRAG_HANDLE -> listOf(6f, 12f, 18f).forEach { y -> dot(9f, y); dot(15f, y) }
             ActivaIconKind.TRASH -> {
                 line(4f, 7f, 20f, 7f)
                 drawPath(
@@ -83,6 +88,62 @@ fun ActivaIcon(kind: ActivaIconKind, tint: Color, modifier: Modifier = Modifier,
                 drawCircle(tint, 3f * k, o(12f, 8f), style = stroke)
                 drawCircle(tint, 3f * k, o(18f, 15f), style = stroke)
             }
+            ActivaIconKind.BELL -> {
+                drawPath(
+                    Path().apply {
+                        moveTo(6.5f * k, 17.5f * k); lineTo(6.5f * k, 11f * k)
+                        cubicTo(6.5f * k, 7.4f * k, 9f * k, 5f * k, 12f * k, 5f * k)
+                        cubicTo(15f * k, 5f * k, 17.5f * k, 7.4f * k, 17.5f * k, 11f * k)
+                        lineTo(17.5f * k, 17.5f * k)
+                    },
+                    tint, style = stroke,
+                )
+                line(4.5f, 17.5f, 19.5f, 17.5f); line(12f, 3.5f, 12f, 5f)
+                drawPath(
+                    Path().apply {
+                        moveTo(10f * k, 20f * k)
+                        cubicTo(10.4f * k, 21.3f * k, 13.6f * k, 21.3f * k, 14f * k, 20f * k)
+                    },
+                    tint, style = stroke,
+                )
+            }
+            ActivaIconKind.PLAY -> drawPath(
+                Path().apply { moveTo(7.5f * k, 5f * k); lineTo(19f * k, 12f * k); lineTo(7.5f * k, 19f * k); close() },
+                tint, style = stroke,
+            )
+            ActivaIconKind.DUMBBELL -> {
+                line(6f, 12f, 18f, 12f)
+                line(6f, 8f, 6f, 16f); line(18f, 8f, 18f, 16f)
+                line(3f, 10f, 3f, 14f); line(21f, 10f, 21f, 14f)
+            }
+            ActivaIconKind.CLOCK -> {
+                drawCircle(tint, 9f * k, o(12f, 12f), style = stroke)
+                drawPath(Path().apply { moveTo(12 * k, 7 * k); lineTo(12 * k, 12 * k); lineTo(15.5f * k, 14 * k) }, tint, style = stroke)
+            }
+            ActivaIconKind.CHEVRON_LEFT -> drawPath(
+                Path().apply { moveTo(14.5f * k, 5.5f * k); lineTo(8f * k, 12f * k); lineTo(14.5f * k, 18.5f * k) }, tint, style = stroke,
+            )
+            ActivaIconKind.ARROW_DOWN -> {
+                line(12f, 5f, 12f, 19f)
+                drawPath(Path().apply { moveTo(6.5f * k, 13.5f * k); lineTo(12f * k, 19f * k); lineTo(17.5f * k, 13.5f * k) }, tint, style = stroke)
+            }
+            ActivaIconKind.ARROW_UP -> {
+                line(12f, 5f, 12f, 19f)
+                drawPath(Path().apply { moveTo(6.5f * k, 10.5f * k); lineTo(12f * k, 5f * k); lineTo(17.5f * k, 10.5f * k) }, tint, style = stroke)
+            }
+            ActivaIconKind.FLAME -> drawPath(
+                Path().apply {
+                    moveTo(12f * k, 3f * k)
+                    cubicTo(13f * k, 6f * k, 17.5f * k, 8.5f * k, 17.5f * k, 14f * k)
+                    cubicTo(17.5f * k, 17.6f * k, 15f * k, 20.5f * k, 12f * k, 20.5f * k)
+                    cubicTo(9f * k, 20.5f * k, 6.5f * k, 17.6f * k, 6.5f * k, 14f * k)
+                    cubicTo(6.5f * k, 12f * k, 7.5f * k, 10.5f * k, 8.5f * k, 9.5f * k)
+                    cubicTo(9f * k, 11f * k, 9.5f * k, 11.8f * k, 10.5f * k, 12f * k)
+                    cubicTo(10.2f * k, 9f * k, 10.8f * k, 5.5f * k, 12f * k, 3f * k)
+                    close()
+                },
+                tint, style = stroke,
+            )
         }
     }
 }

@@ -53,6 +53,18 @@ fun LevelBadge(difficulty: Difficulty, modifier: Modifier = Modifier) =
 fun ZoneChip(zone: BoardZone, modifier: Modifier = Modifier) =
     BadgePill(ActivaPlanTheme.colors.zone(zone), ActivaPlanTheme.strings.zoneChip(zone), modifier)
 
+/** Badge teks netral tanpa titik, mis. kategori latihan yang tidak punya zona board. */
+@Composable
+fun TextBadge(label: String, modifier: Modifier = Modifier) {
+    val c = ActivaPlanTheme.colors
+    Text(
+        label,
+        style = ActivaPlanTheme.type.labelSmall.copy(fontWeight = FontWeight.SemiBold),
+        color = c.text,
+        modifier = modifier.clip(ActivaShapes.chip).background(c.surfaceVar).padding(horizontal = 10.dp, vertical = 4.dp),
+    )
+}
+
 /** Chip filter: terpilih = primary penuh, tidak = surface bergaris. Target sentuh 48 lewat inset interaktif. */
 @Composable
 fun ActivaChip(label: String, selected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
