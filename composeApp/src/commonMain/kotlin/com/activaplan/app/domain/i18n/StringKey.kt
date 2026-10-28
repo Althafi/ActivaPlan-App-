@@ -311,6 +311,9 @@ enum class StringKey(val id: String, val en: String) {
     ALERT_ALL_DATA_DELETED("Semua data dihapus.", "All data deleted."),
     ALERT_HISTORY_DELETED("Riwayat sesi dihapus.", "Session history deleted."),
 
+    SPLASH_TAGLINE("Rencanakan. Latih. Konsisten.", "Plan. Train. Stay consistent."),
+    SPLASH_LOGO_DESCRIPTION("ActivaPlan", "ActivaPlan"),
+
     INTRO_SKIP("Lewati", "Skip"),
     INTRO_NEXT("Lanjut", "Next"),
     INTRO_START("Mulai", "Start"),

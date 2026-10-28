@@ -42,6 +42,7 @@ import com.activaplan.app.designsystem.components.ActivaIconKind
 import com.activaplan.app.designsystem.components.BoardDiagram
 import com.activaplan.app.domain.model.BoardZone
 import com.activaplan.app.domain.time.formatClock
+import com.activaplan.app.presentation.rememberReduceMotion
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.max
@@ -58,11 +59,12 @@ import kotlin.math.sqrt
 internal fun BoardZonesIllustration(modifier: Modifier = Modifier) {
     val c = ActivaPlanTheme.colors
     val strings = ActivaPlanTheme.strings
-    val step by rememberInfiniteTransition().animateFloat(
+    val animated by rememberInfiniteTransition().animateFloat(
         initialValue = 0f,
         targetValue = BoardZone.entries.size.toFloat(),
         animationSpec = infiniteRepeatable(tween(durationMillis = 4800, easing = LinearEasing)),
     )
+    val step = if (rememberReduceMotion()) 0f else animated
     val zone = BoardZone.entries[step.toInt().coerceIn(0, BoardZone.entries.lastIndex)]
     Column(modifier.clearAndSetSemantics {}, horizontalAlignment = Alignment.CenterHorizontally) {
         BoardDiagram(zone, Modifier.fillMaxWidth(0.82f))
@@ -86,16 +88,19 @@ internal fun WeekPlannerIllustration(modifier: Modifier = Modifier) {
     val c = ActivaPlanTheme.colors
     val strings = ActivaPlanTheme.strings
     val transition = rememberInfiniteTransition()
-    val step by transition.animateFloat(
+    val animatedStep by transition.animateFloat(
         initialValue = 0f,
         targetValue = PlannedDays.size.toFloat(),
         animationSpec = infiniteRepeatable(tween(durationMillis = 4500, easing = LinearEasing)),
     )
-    val swing by transition.animateFloat(
+    val animatedSwing by transition.animateFloat(
         initialValue = -12f,
         targetValue = 12f,
         animationSpec = infiniteRepeatable(tween(durationMillis = 450), RepeatMode.Reverse),
     )
+    val reduceMotion = rememberReduceMotion()
+    val step = if (reduceMotion) 0f else animatedStep
+    val swing = if (reduceMotion) 0f else animatedSwing
     val activeDay = PlannedDays[step.toInt().coerceIn(0, PlannedDays.lastIndex)]
     Column(modifier.clearAndSetSemantics {}, horizontalAlignment = Alignment.CenterHorizontally) {
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -153,11 +158,12 @@ private const val DOWN_DEGREES = 9f
 @Composable
 internal fun PushUpIllustration(modifier: Modifier = Modifier) {
     val c = ActivaPlanTheme.colors
-    val p by rememberInfiniteTransition().animateFloat(
+    val animated by rememberInfiniteTransition().animateFloat(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(tween(durationMillis = 1400, easing = FastOutSlowInEasing), RepeatMode.Reverse),
     )
+    val p = if (rememberReduceMotion()) 0f else animated
     Canvas(modifier.clearAndSetSemantics {}.fillMaxWidth(0.85f).aspectRatio(FRAME_W / FRAME_H)) {
         val k = size.width / FRAME_W
         fun o(v: Offset) = Offset(v.x * k, v.y * k)

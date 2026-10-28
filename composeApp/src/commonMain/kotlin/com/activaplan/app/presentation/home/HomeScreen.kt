@@ -49,6 +49,7 @@ import com.activaplan.app.designsystem.components.ActivaButton
 import com.activaplan.app.designsystem.components.ActivaCard
 import com.activaplan.app.designsystem.components.ActivaIcon
 import com.activaplan.app.designsystem.components.ActivaIconKind
+import com.activaplan.app.designsystem.components.ActivaLogoTile
 import com.activaplan.app.designsystem.components.ActivaSnackbarHost
 import com.activaplan.app.designsystem.components.ButtonStyle
 import com.activaplan.app.designsystem.components.LevelBadge
@@ -149,12 +150,16 @@ private fun Header(greeting: GreetingPeriod, onOpenSchedule: () -> Unit) {
     val strings = ActivaPlanTheme.strings
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
         Column(Modifier.weight(1f)) {
-            Text(
-                "ActivaPlan",
-                style = ActivaPlanTheme.type.labelSmall.copy(fontWeight = FontWeight.SemiBold, letterSpacing = 0.5.sp),
-                color = c.primary,
-            )
-            Spacer(Modifier.height(4.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                ActivaLogoTile(size = 28.dp)
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    "ActivaPlan",
+                    style = ActivaPlanTheme.type.labelSmall.copy(fontWeight = FontWeight.SemiBold, letterSpacing = 0.5.sp),
+                    color = c.primary,
+                )
+            }
+            Spacer(Modifier.height(8.dp))
             Text(strings.greeting(greeting), style = ActivaPlanTheme.type.body, color = c.textMuted)
             Text(strings[StringKey.HOME_HEADLINE], style = bigTitle(), color = c.text)
         }

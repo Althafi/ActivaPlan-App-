@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- primary terang `#E8531A`; splash selalu oranye merek, tidak mengikuti tema aplikasi. -->
+    <color name="splash_background">#E8531A</color>
+</resources>

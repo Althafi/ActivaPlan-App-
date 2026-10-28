@@ -49,6 +49,7 @@ import com.activaplan.app.designsystem.ActivaShapes
 import com.activaplan.app.designsystem.components.ActivaDialog
 import com.activaplan.app.designsystem.components.ActivaIcon
 import com.activaplan.app.designsystem.components.ActivaIconKind
+import com.activaplan.app.designsystem.components.ActivaLogoTile
 import com.activaplan.app.designsystem.components.ActivaSegmentedControl
 import com.activaplan.app.designsystem.components.ActivaSnackbarHost
 import com.activaplan.app.designsystem.components.AlertType
@@ -362,6 +363,8 @@ private fun AboutRow(versionName: String) {
         Modifier.fillMaxWidth().defaultMinSize(minHeight = RowMinHeight).padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        ActivaLogoTile(size = 32.dp)
+        Spacer(Modifier.width(12.dp))
         Text(strings[StringKey.SETTINGS_APP_NAME], style = ActivaPlanTheme.type.cardTitle, color = c.text, modifier = Modifier.weight(1f))
         if (versionName.isNotBlank()) ValueText(strings.format(StringKey.SETTINGS_VERSION, versionName))
     }
