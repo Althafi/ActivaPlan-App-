@@ -1,6 +1,7 @@
 package com.activaplan.app.domain.usecase
 
 import com.activaplan.app.data.repository.UserDataRepository
+import com.activaplan.app.domain.model.OnboardingChoices
 import com.activaplan.app.domain.model.Settings
 import com.activaplan.app.domain.model.ThemeMode
 import kotlinx.coroutines.flow.Flow
@@ -29,6 +30,28 @@ class SetDefaultTimeUseCase(private val userData: UserDataRepository) {
 /** Mematikan tidak menghapus log lama; penghapusan lewat [ClearSessionHistoryUseCase]. */
 class SetKeepHistoryUseCase(private val userData: UserDataRepository) {
     suspend operator fun invoke(keep: Boolean) = userData.updateSettings { it.copy(keepHistory = keep) }
+}
+
+/**
+ * Menandai Perkenalan dan Onboarding selesai. [choices] null = "Nanti saja": hanya menandai, setelan lain tidak berubah.
+ * Pengingat hanya dinyalakan bila diminta; memilih tidak menyalakan tidak mematikan apa pun.
+ */
+class CompleteOnboardingUseCase(private val userData: UserDataRepository) {
+    suspend operator fun invoke(choices: OnboardingChoices?) {
+        if (choices != null) require(choices.isValid) { "Pilihan onboarding tidak valid: $choices" }
+        userData.updateSettings { s ->
+            when {
+                choices == null -> s.copy(onboardingDone = true)
+                else -> s.copy(
+                    onboardingDone = true,
+                    startLevel = choices.startLevel,
+                    ownedModes = choices.ownedModes,
+                    remindersEnabled = if (choices.remindersOn) true else s.remindersEnabled,
+                    defaultTimeMinutes = if (choices.remindersOn) choices.reminderTimeMinutes else s.defaultTimeMinutes,
+                )
+            }
+        }
+    }
 }
 
 class ClearSessionHistoryUseCase(private val userData: UserDataRepository) {

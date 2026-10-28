@@ -14,6 +14,7 @@ import com.activaplan.app.designsystem.isDark
 import com.activaplan.app.domain.reminder.ReminderSynchronizer
 import com.activaplan.app.presentation.ApplySystemAppearance
 import com.activaplan.app.presentation.MainScaffold
+import com.activaplan.app.presentation.onboarding.OnboardingFlow
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 
@@ -22,11 +23,12 @@ fun App() {
     ReminderSyncEffect()
     // Tema mengikuti `Settings.theme` secara langsung; sebelum setelan terbaca tidak ada yang digambar agar tidak berkedip.
     val settings by koinInject<UserDataRepository>().settings.collectAsState(initial = null)
-    val theme = settings?.theme ?: return
-    val darkTheme = theme.isDark(isSystemInDarkTheme())
-    ApplySystemAppearance(theme, darkTheme)
+    val current = settings ?: return
+    val darkTheme = current.theme.isDark(isSystemInDarkTheme())
+    ApplySystemAppearance(current.theme, darkTheme)
     ActivaPlanTheme(darkTheme = darkTheme) {
-        MainScaffold()
+        // Satu-satunya tempat yang memutuskan tujuan awal: pengguna baru ke Perkenalan/Onboarding, selain itu ke Beranda.
+        if (current.onboardingDone) MainScaffold() else OnboardingFlow()
     }
 }
 

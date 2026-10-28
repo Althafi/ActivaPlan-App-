@@ -59,7 +59,10 @@ import com.activaplan.app.domain.model.Difficulty
 import com.activaplan.app.domain.model.Exercise
 import com.activaplan.app.domain.model.ExploreQuery
 import com.activaplan.app.domain.model.Mode
+import com.activaplan.app.domain.model.initialExploreMode
 import com.activaplan.app.domain.usecase.FilterExercisesUseCase
+import com.activaplan.app.domain.usecase.ObserveSettingsUseCase
+import kotlinx.coroutines.flow.first
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 
@@ -83,8 +86,11 @@ class ExploreActions(
 fun ExploreScreen(onOpenExercise: (String) -> Unit, modifier: Modifier = Modifier, onBack: (() -> Unit)? = null) {
     val repository = koinInject<ExerciseRepository>()
     val filter = koinInject<FilterExercisesUseCase>()
+    val observeSettings = koinInject<ObserveSettingsUseCase>()
     val language = ActivaPlanTheme.strings.language
-    val viewModel = viewModel(key = "explore-${if (onBack != null) "pick-" else ""}${language.code}") { ExploreViewModel(repository, filter, language) }
+    val viewModel = viewModel(key = "explore-${if (onBack != null) "pick-" else ""}${language.code}") {
+        ExploreViewModel(repository, filter, language) { observeSettings().first().initialExploreMode() }
+    }
     val query by viewModel.query.collectAsStateWithLifecycle()
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val actions = ExploreActions(

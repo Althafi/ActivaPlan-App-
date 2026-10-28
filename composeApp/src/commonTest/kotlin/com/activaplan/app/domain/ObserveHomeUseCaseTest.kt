@@ -7,8 +7,10 @@ import com.activaplan.app.data.repository.ExerciseFiles
 import com.activaplan.app.data.repository.ExerciseRepository
 import com.activaplan.app.data.repository.UserDataRepository
 import com.activaplan.app.domain.model.AppLanguage
+import com.activaplan.app.domain.model.Difficulty
 import com.activaplan.app.domain.model.GreetingPeriod
 import com.activaplan.app.domain.model.HomeData
+import com.activaplan.app.domain.model.Mode
 import com.activaplan.app.domain.model.Routine
 import com.activaplan.app.domain.model.RoutineItem
 import com.activaplan.app.domain.model.ScheduleEntry
@@ -66,9 +68,12 @@ class ObserveHomeUseCaseTest {
 
     private suspend fun useIndonesian() = repository.updateSettings { it.copy(language = AppLanguage.ID) }
 
+    private suspend fun useIndonesianWithAllGear() =
+        repository.updateSettings { it.copy(language = AppLanguage.ID, ownedModes = Mode.entries.toSet()) }
+
     @Test
     fun emptyDataShowsEmptyTodayAndDefaultRecommendations() = runTest {
-        useIndonesian()
+        useIndonesianWithAllGear()
 
         val home = observe().first()
 
@@ -76,6 +81,21 @@ class ObserveHomeUseCaseTest {
         assertNull(home.today)
         assertEquals(0, home.week.streak)
         assertEquals(listOf("t_easy", "t_med"), home.recommendations.map { it.id })
+    }
+
+    @Test
+    fun defaultGearOnlyRecommendsNoEquipmentTemplates() = runTest {
+        useIndonesian()
+
+        assertEquals(listOf("t_easy"), observe().first().recommendations.map { it.id })
+    }
+
+    @Test
+    fun startLevelFromOnboardingDrivesRecommendationsUntilASessionIsCompleted() = runTest {
+        useIndonesianWithAllGear()
+        repository.updateSettings { it.copy(startLevel = Difficulty.MEDIUM) }
+
+        assertEquals(listOf("t_med"), observe().first().recommendations.map { it.id })
     }
 
     @Test

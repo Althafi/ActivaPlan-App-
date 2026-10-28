@@ -84,14 +84,18 @@ class SettingsActions(
     val onKeepHistory: (Boolean) -> Unit,
     val onClearHistory: () -> Unit,
     val onClearAll: () -> Unit,
+    val onReplayIntro: () -> Unit,
 )
 
 /** Dialog konfirmasi hapus yang sedang terbuka. */
 private enum class DeleteTarget { HISTORY, ALL }
 
-/** Layar Setelan: tema, pengingat, data, dan tentang. [onDataCleared] dipanggil setelah semua data terhapus, agar navigasi kembali ke Beranda. */
+/**
+ * Layar Setelan: tema, pengingat, data, dan tentang. [onDataCleared] dipanggil setelah semua data terhapus, agar navigasi kembali ke Beranda.
+ * [onReplayIntro] membuka Perkenalan 1-3 lagi.
+ */
 @Composable
-fun SettingsScreen(onDataCleared: () -> Unit, modifier: Modifier = Modifier) {
+fun SettingsScreen(onDataCleared: () -> Unit, onReplayIntro: () -> Unit, modifier: Modifier = Modifier) {
     val observe = koinInject<ObserveSettingsUseCase>()
     val setTheme = koinInject<SetThemeUseCase>()
     val setReminders = koinInject<SetRemindersEnabledUseCase>()
@@ -142,6 +146,7 @@ fun SettingsScreen(onDataCleared: () -> Unit, modifier: Modifier = Modifier) {
         onKeepHistory = viewModel::onKeepHistory,
         onClearHistory = { deleteTarget = DeleteTarget.HISTORY },
         onClearAll = { deleteTarget = DeleteTarget.ALL },
+        onReplayIntro = onReplayIntro,
     )
     settings?.let { SettingsContent(it, permissionState, appInfo.versionName, actions, snackbarHostState, modifier) }
 
@@ -221,6 +226,8 @@ fun SettingsContent(
 
             SettingsGroup(strings[StringKey.SETTINGS_GROUP_ABOUT]) {
                 AboutRow(versionName)
+                RowDivider()
+                NavigationRow(strings[StringKey.SETTINGS_REPLAY_INTRO], actions.onReplayIntro) {}
                 RowDivider()
                 InfoBlock(strings[StringKey.SETTINGS_ATTRIBUTION_TITLE], strings[StringKey.SETTINGS_ATTRIBUTION_BODY])
                 RowDivider()
@@ -373,7 +380,7 @@ private fun InfoBlock(title: String, body: String) {
 
 // region Pratinjau
 
-private val previewActions = SettingsActions({}, {}, {}, {}, {}, {}, {})
+private val previewActions = SettingsActions({}, {}, {}, {}, {}, {}, {}, {})
 
 @Composable
 private fun SettingsPreview(darkTheme: Boolean, settings: Settings, permission: PermissionState) = ActivaPlanTheme(darkTheme = darkTheme) {

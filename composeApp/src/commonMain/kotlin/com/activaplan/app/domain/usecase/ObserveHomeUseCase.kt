@@ -57,7 +57,11 @@ class ObserveHomeUseCase(
             greeting = GreetingPeriod.at(now.hour),
             today = getToday(s.validated.schedule, s.validated.routines, modes, now),
             week = calculateWeekStreak(s.validated.schedule, s.logs, now.date),
-            recommendations = recommendTemplates(templates, s.validated.routines, s.logs, byId),
+            recommendations = recommendTemplates(
+                templates, s.validated.routines, s.logs, byId,
+                startLevel = s.settings.startLevel,
+                ownedModes = s.settings.ownedModes,
+            ),
         )
     }
 }

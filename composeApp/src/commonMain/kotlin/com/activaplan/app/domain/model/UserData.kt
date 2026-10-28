@@ -61,6 +61,12 @@ data class Settings(
     val defaultTimeMinutes: Int,
     val keepHistory: Boolean,
     val language: AppLanguage = AppLanguage.SYSTEM,
+    /** False sampai Perkenalan dan Onboarding selesai atau dilewati; data lama yang sudah berisi dianggap selesai (lihat `UserDataStore`). */
+    val onboardingDone: Boolean = false,
+    /** Level awal dari Onboarding; dipakai rekomendasi Beranda sampai ada sesi selesai. */
+    val startLevel: Difficulty = Difficulty.EASY,
+    /** Mode alat yang dimiliki; menyaring rekomendasi Beranda dan menentukan mode awal Jelajah. Tidak pernah kosong. */
+    val ownedModes: Set<Mode> = setOf(Mode.NO_EQUIPMENT),
 ) {
     companion object {
         /** Nilai awal sebelum pengguna mengubah setelan; waktu default 16.30. */

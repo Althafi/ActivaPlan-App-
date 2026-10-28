@@ -29,14 +29,20 @@ sealed interface ExploreUiState {
     data class Ready(val results: List<Exercise>) : ExploreUiState
 }
 
-/** Isi katalog dimuat sekali per [language]; filter dihitung di memori sehingga hasil langsung berubah. */
+/**
+ * Isi katalog dimuat sekali per [language]; filter dihitung di memori sehingga hasil langsung berubah.
+ * Mode awal diambil dari [initialMode] (alat yang dipilih di Onboarding); layar menunggu sampai terisi agar tidak berkedip.
+ */
 class ExploreViewModel(
     private val exercises: ExerciseRepository,
     private val filter: FilterExercisesUseCase,
     private val language: Language,
+    private val initialMode: suspend () -> Mode,
 ) : ViewModel() {
 
-    private val _query = MutableStateFlow(ExploreQuery(mode = Mode.PUSHUP_BOARD))
+    private val _query = MutableStateFlow(ExploreQuery(mode = Mode.NO_EQUIPMENT))
+    private val modeResolved = MutableStateFlow(false)
+    private var modeChosenByUser = false
 
     /** Dipisah dari [uiState] agar teks di kolom cari selalu sinkron saat mengetik. */
     val query: StateFlow<ExploreQuery> = _query.asStateFlow()
@@ -49,15 +55,29 @@ class ExploreViewModel(
 
     private val load = MutableStateFlow<Load>(Load.Loading)
 
-    val uiState: StateFlow<ExploreUiState> = combine(load, _query) { loaded, query ->
-        when (loaded) {
-            Load.Loading -> ExploreUiState.Loading
-            Load.Failed -> ExploreUiState.Error
-            is Load.Done -> ExploreUiState.Ready(filter(loaded.all, query))
+    val uiState: StateFlow<ExploreUiState> = combine(load, _query, modeResolved) { loaded, query, resolved ->
+        when {
+            !resolved -> ExploreUiState.Loading
+            loaded is Load.Loading -> ExploreUiState.Loading
+            loaded is Load.Failed -> ExploreUiState.Error
+            loaded is Load.Done -> ExploreUiState.Ready(filter(loaded.all, query))
+            else -> ExploreUiState.Loading
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(STOP_TIMEOUT_MILLIS), ExploreUiState.Loading)
 
     init {
+        viewModelScope.launch {
+            val mode = try {
+                initialMode()
+            } catch (e: CancellationException) {
+                throw e
+            } catch (_: Exception) {
+                Mode.NO_EQUIPMENT
+            }
+            // Bila pengguna sempat mengetuk mode lain sebelum setelan terbaca, pilihannya yang dipakai.
+            if (!modeChosenByUser) _query.update { it.copy(mode = mode) }
+            modeResolved.value = true
+        }
         reload()
     }
 
@@ -74,7 +94,10 @@ class ExploreViewModel(
         }
     }
 
-    fun onMode(mode: Mode) = _query.update { it.copy(mode = mode) }
+    fun onMode(mode: Mode) {
+        modeChosenByUser = true
+        _query.update { it.copy(mode = mode) }
+    }
 
     fun onText(text: String) = _query.update { it.copy(text = text) }
 

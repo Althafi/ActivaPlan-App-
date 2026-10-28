@@ -311,6 +311,48 @@ enum class StringKey(val id: String, val en: String) {
     ALERT_ALL_DATA_DELETED("Semua data dihapus.", "All data deleted."),
     ALERT_HISTORY_DELETED("Riwayat sesi dihapus.", "Session history deleted."),
 
+    INTRO_SKIP("Lewati", "Skip"),
+    INTRO_NEXT("Lanjut", "Next"),
+    INTRO_START("Mulai", "Start"),
+    INTRO_PAGE("Halaman {0} dari {1}", "Page {0} of {1}"),
+    INTRO_1_TITLE("Latihan sesuai alat dan levelmu", "Workouts for your gear and level"),
+    INTRO_1_BODY(
+        "Pilih dari puluhan latihan untuk tiga cara: Tanpa Alat, Push-up Board, atau Board + Tali. Tiap otot punya level Mudah, Sedang, dan Sulit.",
+        "Choose from dozens of exercises across three ways to train: No Equipment, Push-up Board, or Board + Rope. Every muscle has Easy, Medium, and Hard levels.",
+    ),
+    INTRO_2_TITLE("Susun rutinitas dan jadwalmu", "Plan your routines and schedule"),
+    INTRO_2_BODY(
+        "Buat rutinitas sendiri atau pakai template, lalu taruh di jadwal mingguan. Pengingat membantumu tetap datang tepat waktu.",
+        "Build your own routine or start from a template, then place it in your weekly schedule. Reminders help you show up on time.",
+    ),
+    INTRO_3_TITLE("Dipandu, aman, dan tetap milikmu", "Guided, safe, and yours"),
+    INTRO_3_BODY(
+        "Timer set dan istirahat memandumu langkah demi langkah, lengkap dengan animasi gerakan. Semua data tersimpan di perangkatmu, tanpa akun.",
+        "Set and rest timers guide you step by step, with movement animations. All your data stays on your device, no account needed.",
+    ),
+
+    ONBOARD_TITLE("Atur awal sebentar", "Quick setup"),
+    ONBOARD_SUBTITLE(
+        "Tiga pilihan ini bisa diubah kapan saja di Jelajah dan Setelan.",
+        "You can change these any time in Explore and Settings.",
+    ),
+    ONBOARD_LEVEL("Level awal", "Starting level"),
+    ONBOARD_EQUIPMENT("Alat yang kamu punya", "Gear you have"),
+    ONBOARD_ROPE_NOTE(
+        "Latihan tali butuh titik tumpu kuat. Kamu akan diingatkan cek keselamatan sebelum mulai.",
+        "Rope exercises need a strong anchor point. You will get a safety check before you start.",
+    ),
+    ONBOARD_REMINDER("Pengingat latihan", "Workout reminders"),
+    ONBOARD_REMINDER_TIME("Jam pengingat", "Reminder time"),
+    ONBOARD_REMINDER_DENIED(
+        "Izin notifikasi ditolak. Aktifkan dari pengaturan perangkat.",
+        "Notification permission denied. Turn it on in your device settings.",
+    ),
+    ONBOARD_PICK_ONE("Pilih minimal satu", "Pick at least one"),
+    ONBOARD_CTA("Mulai Latihan", "Start Training"),
+    ONBOARD_LATER("Nanti saja", "Maybe later"),
+    SETTINGS_REPLAY_INTRO("Lihat pengantar lagi", "View intro again"),
+
     MONTH_1("Januari", "January"),
     MONTH_2("Februari", "February"),
     MONTH_3("Maret", "March"),

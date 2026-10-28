@@ -12,6 +12,7 @@ import androidx.navigation.toRoute
 import com.activaplan.app.presentation.detail.ExerciseDetailScreen
 import com.activaplan.app.presentation.explore.ExploreScreen
 import com.activaplan.app.presentation.home.HomeScreen
+import com.activaplan.app.presentation.onboarding.IntroReplayScreen
 import com.activaplan.app.presentation.routines.RoutineBuilderScreen
 import com.activaplan.app.presentation.routines.RoutinesScreen
 import com.activaplan.app.presentation.routines.TemplatePreviewScreen
@@ -101,11 +102,15 @@ fun ActivaNavHost(navController: NavHostController, modifier: Modifier = Modifie
                 },
             )
         }
+        composable<IntroReplayRoute> {
+            IntroReplayScreen(onClose = { navController.popBackStack() })
+        }
         composable(TopLevelDestination.SCHEDULE.route) {
             ScheduleScreen(onCreateRoutine = { navController.navigate(RoutineBuilderRoute()) })
         }
         composable(TopLevelDestination.SETTINGS.route) {
             SettingsScreen(
+                onReplayIntro = { navController.navigate(IntroReplayRoute) { launchSingleTop = true } },
                 onDataCleared = {
                     // Beranda selalu ada di dasar back stack; bendera dibaca saat entrinya tampil kembali.
                     navController.getBackStackEntry(TopLevelDestination.HOME.route).savedStateHandle[DATA_CLEARED_KEY] = true

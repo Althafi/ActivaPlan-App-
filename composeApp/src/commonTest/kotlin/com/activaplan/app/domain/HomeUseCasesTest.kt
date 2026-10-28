@@ -328,3 +328,60 @@ class HomeFormattingTest {
         assertEquals("00.00", formatClock(0))
     }
 }
+
+class RecommendTemplatesOnboardingTest {
+    private val recommend = RecommendTemplatesUseCase()
+    private val exercises = listOf(
+        exercise("e", Difficulty.EASY),
+        exercise("m", Difficulty.MEDIUM, Mode.PUSHUP_BOARD),
+        exercise("h", Difficulty.HARD, Mode.BOARD_ROPE),
+    ).associateBy { it.id }
+    private val templates = listOf(
+        Template("t_e1", "Mudah 1", Difficulty.EASY, listOf("e", "e")),
+        Template("t_e2", "Mudah 2", Difficulty.EASY, listOf("e")),
+        Template("t_m1", "Sedang 1", Difficulty.MEDIUM, listOf("m", "m", "h")),
+        Template("t_m2", "Sedang 2", Difficulty.MEDIUM, listOf("m")),
+        Template("t_h1", "Sulit 1", Difficulty.HARD, listOf("h", "h")),
+    )
+    private val routines = listOf(routine("medium", "e", "m"))
+
+    private fun ids(
+        startLevel: Difficulty = Difficulty.EASY,
+        ownedModes: Set<Mode> = Mode.entries.toSet(),
+        logs: List<SessionLog> = emptyList(),
+    ) = recommend(templates, routines, logs, exercises, startLevel, ownedModes).map { it.id }
+
+    @Test
+    fun startLevelReplacesEasyDefaultWhenNoSessionIsCompleted() {
+        assertEquals(listOf("t_m1", "t_h1"), ids(startLevel = Difficulty.MEDIUM))
+    }
+
+    @Test
+    fun aCompletedSessionOverridesStartLevel() {
+        assertEquals(listOf("t_m1", "t_h1"), ids(startLevel = Difficulty.HARD, logs = listOf(log(oct(25), "medium"))))
+    }
+
+    @Test
+    fun onlyPartialSessionsStillUseStartLevel() {
+        val partial = log(oct(25), "medium", SessionStatus.PARTIAL)
+
+        assertEquals(listOf("t_m1", "t_h1"), ids(startLevel = Difficulty.MEDIUM, logs = listOf(partial)))
+    }
+
+    @Test
+    fun hidesTemplatesWhosePrimaryModeIsNotOwned() {
+        // Pemilik Tanpa Alat saja tidak melihat template board (Sedang/Sulit), hanya yang Mudah.
+        assertEquals(listOf("t_e1", "t_e2"), ids(ownedModes = setOf(Mode.NO_EQUIPMENT)))
+    }
+
+    @Test
+    fun boardOwnerKeepsBoardTemplateEvenWithAFewRopeExercises() {
+        // t_m1 berisi satu latihan tali tetapi mode utamanya Push-up Board.
+        assertEquals(listOf("t_m1", "t_m2"), ids(ownedModes = setOf(Mode.PUSHUP_BOARD)))
+    }
+
+    @Test
+    fun ownerOfNothingMatchingGetsNoRecommendation() {
+        assertEquals(emptyList(), ids(startLevel = Difficulty.HARD, ownedModes = setOf(Mode.NO_EQUIPMENT)))
+    }
+}

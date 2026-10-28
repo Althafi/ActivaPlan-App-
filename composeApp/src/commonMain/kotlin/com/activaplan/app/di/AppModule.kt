@@ -14,6 +14,7 @@ import com.activaplan.app.domain.time.SystemLocalClock
 import com.activaplan.app.domain.usecase.AddExerciseToRoutineUseCase
 import com.activaplan.app.domain.usecase.ClearAllDataUseCase
 import com.activaplan.app.domain.usecase.ClearSessionHistoryUseCase
+import com.activaplan.app.domain.usecase.CompleteOnboardingUseCase
 import com.activaplan.app.domain.usecase.CreateRoutineFromTemplateUseCase
 import com.activaplan.app.domain.usecase.DeleteRoutineUseCase
 import com.activaplan.app.domain.usecase.DeleteScheduleEntryUseCase
@@ -81,6 +82,7 @@ val commonModule = module {
     factory { SetRemindersEnabledUseCase(get()) }
     factory { SetDefaultTimeUseCase(get()) }
     factory { SetKeepHistoryUseCase(get()) }
+    factory { CompleteOnboardingUseCase(get()) }
     factory { ClearSessionHistoryUseCase(get()) }
     factory { ClearAllDataUseCase(get()) }
     single { ReminderSynchronizer(get(), get(), get()) }
