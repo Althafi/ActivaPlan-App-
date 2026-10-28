@@ -7,6 +7,9 @@ import com.activaplan.app.data.repository.ExerciseFiles
 import com.activaplan.app.data.repository.ExerciseRepository
 import com.activaplan.app.data.repository.UserDataRepository
 import com.activaplan.app.designsystem.isDark
+import com.activaplan.app.domain.i18n.Language
+import com.activaplan.app.domain.i18n.resolve
+import com.activaplan.app.domain.model.AppLanguage
 import com.activaplan.app.domain.model.Routine
 import com.activaplan.app.domain.model.RoutineItem
 import com.activaplan.app.domain.model.ScheduleEntry
@@ -19,6 +22,7 @@ import com.activaplan.app.domain.usecase.ClearSessionHistoryUseCase
 import com.activaplan.app.domain.usecase.ObserveSettingsUseCase
 import com.activaplan.app.domain.usecase.SetDefaultTimeUseCase
 import com.activaplan.app.domain.usecase.SetKeepHistoryUseCase
+import com.activaplan.app.domain.usecase.SetLanguageUseCase
 import com.activaplan.app.domain.usecase.SetRemindersEnabledUseCase
 import com.activaplan.app.domain.usecase.SetThemeUseCase
 import kotlinx.coroutines.flow.first
@@ -65,6 +69,25 @@ class SettingsUseCasesTest {
         SetThemeUseCase(userData)(ThemeMode.DARK)
 
         assertEquals(ThemeMode.DARK, settings().theme)
+    }
+
+    @Test
+    fun languageDefaultsToSystemAndIsStoredAndObserved() = runTest {
+        assertEquals(AppLanguage.SYSTEM, settings().language)
+
+        SetLanguageUseCase(userData)(AppLanguage.EN)
+        assertEquals(AppLanguage.EN, settings().language)
+
+        SetLanguageUseCase(userData)(AppLanguage.ID)
+        assertEquals(Settings.DEFAULT.copy(language = AppLanguage.ID), settings())
+    }
+
+    @Test
+    fun explicitLanguageWinsOverTheDeviceLanguage() {
+        assertEquals(Language.EN, AppLanguage.EN.resolve(systemTag = "id-ID"))
+        assertEquals(Language.ID, AppLanguage.ID.resolve(systemTag = "en-US"))
+        assertEquals(Language.ID, AppLanguage.SYSTEM.resolve(systemTag = "id-ID"))
+        assertEquals(Language.EN, AppLanguage.SYSTEM.resolve(systemTag = "fr-FR"))
     }
 
     @Test

@@ -34,6 +34,7 @@ import com.activaplan.app.domain.usecase.SaveRoutineUseCase
 import com.activaplan.app.domain.usecase.SaveScheduleUseCase
 import com.activaplan.app.domain.usecase.SetDefaultTimeUseCase
 import com.activaplan.app.domain.usecase.SetKeepHistoryUseCase
+import com.activaplan.app.domain.usecase.SetLanguageUseCase
 import com.activaplan.app.domain.usecase.SetRemindersEnabledUseCase
 import com.activaplan.app.domain.usecase.SetScheduleReminderUseCase
 import com.activaplan.app.domain.usecase.SetThemeUseCase
@@ -79,6 +80,7 @@ val commonModule = module {
     factory { PruneScheduleUseCase(get()) }
     factory { ObserveSettingsUseCase(get()) }
     factory { SetThemeUseCase(get()) }
+    factory { SetLanguageUseCase(get()) }
     factory { SetRemindersEnabledUseCase(get()) }
     factory { SetDefaultTimeUseCase(get()) }
     factory { SetKeepHistoryUseCase(get()) }

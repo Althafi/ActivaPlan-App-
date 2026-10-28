@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -54,8 +56,10 @@ import com.activaplan.app.designsystem.components.ActivaSegmentedControl
 import com.activaplan.app.designsystem.components.ActivaSnackbarHost
 import com.activaplan.app.designsystem.components.AlertType
 import com.activaplan.app.designsystem.components.showActiva
+import com.activaplan.app.domain.i18n.Language
 import com.activaplan.app.domain.i18n.StringKey
 import com.activaplan.app.domain.info.AppInfo
+import com.activaplan.app.domain.model.AppLanguage
 import com.activaplan.app.domain.model.Settings
 import com.activaplan.app.domain.model.ThemeMode
 import com.activaplan.app.domain.reminder.NotificationPermission
@@ -67,6 +71,7 @@ import com.activaplan.app.domain.usecase.ClearSessionHistoryUseCase
 import com.activaplan.app.domain.usecase.ObserveSettingsUseCase
 import com.activaplan.app.domain.usecase.SetDefaultTimeUseCase
 import com.activaplan.app.domain.usecase.SetKeepHistoryUseCase
+import com.activaplan.app.domain.usecase.SetLanguageUseCase
 import com.activaplan.app.domain.usecase.SetRemindersEnabledUseCase
 import com.activaplan.app.domain.usecase.SetThemeUseCase
 import com.activaplan.app.presentation.rememberNotificationPermissionRequester
@@ -79,6 +84,7 @@ import org.koin.compose.koinInject
 /** Aksi layar Setelan, dipisah dari tampilan agar pratinjau tidak perlu ViewModel. */
 class SettingsActions(
     val onTheme: (ThemeMode) -> Unit,
+    val onLanguage: (AppLanguage) -> Unit,
     val onRemindersEnabled: (Boolean) -> Unit,
     val onPickDefaultTime: () -> Unit,
     val onPermissionClick: () -> Unit,
@@ -99,6 +105,7 @@ private enum class DeleteTarget { HISTORY, ALL }
 fun SettingsScreen(onDataCleared: () -> Unit, onReplayIntro: () -> Unit, modifier: Modifier = Modifier) {
     val observe = koinInject<ObserveSettingsUseCase>()
     val setTheme = koinInject<SetThemeUseCase>()
+    val setLanguage = koinInject<SetLanguageUseCase>()
     val setReminders = koinInject<SetRemindersEnabledUseCase>()
     val setDefaultTime = koinInject<SetDefaultTimeUseCase>()
     val setKeepHistory = koinInject<SetKeepHistoryUseCase>()
@@ -109,7 +116,7 @@ fun SettingsScreen(onDataCleared: () -> Unit, onReplayIntro: () -> Unit, modifie
     val appInfo = koinInject<AppInfo>()
     val strings = ActivaPlanTheme.strings
     val viewModel = viewModel(key = "settings") {
-        SettingsViewModel(observe, setTheme, setReminders, setDefaultTime, setKeepHistory, clearHistory, clearAll, permission, synchronizer)
+        SettingsViewModel(observe, setTheme, setLanguage, setReminders, setDefaultTime, setKeepHistory, clearHistory, clearAll, permission, synchronizer)
     }
     val settings by viewModel.settings.collectAsStateWithLifecycle()
     val permissionState by viewModel.permissionState.collectAsStateWithLifecycle()
@@ -141,6 +148,7 @@ fun SettingsScreen(onDataCleared: () -> Unit, onReplayIntro: () -> Unit, modifie
 
     val actions = SettingsActions(
         onTheme = viewModel::onTheme,
+        onLanguage = viewModel::onLanguage,
         onRemindersEnabled = viewModel::onRemindersEnabled,
         onPickDefaultTime = { pickingTime = true },
         onPermissionClick = viewModel::onPermissionClick,
@@ -203,6 +211,10 @@ fun SettingsContent(
 
             SettingsGroup(strings[StringKey.SETTINGS_GROUP_APPEARANCE]) {
                 ThemeRow(settings.theme, actions.onTheme)
+            }
+
+            SettingsGroup(strings[StringKey.SETTINGS_GROUP_LANGUAGE]) {
+                LanguageRows(settings.language, actions.onLanguage)
             }
 
             SettingsGroup(strings[StringKey.SETTINGS_GROUP_REMINDERS]) {
@@ -283,6 +295,35 @@ private fun ThemeRow(selected: ThemeMode, onSelect: (ThemeMode) -> Unit) {
             selectedIndex = modes.indexOf(selected),
             onSelect = { onSelect(modes[it]) },
         )
+    }
+}
+
+/** Pilihan bahasa sebagai daftar radio; nama bahasa memakai nama aslinya, jadi tetap terbaca bila UI sedang berbahasa lain. */
+@Composable
+private fun LanguageRows(selected: AppLanguage, onSelect: (AppLanguage) -> Unit) {
+    val c = ActivaPlanTheme.colors
+    val strings = ActivaPlanTheme.strings
+    val options = listOf(AppLanguage.SYSTEM, AppLanguage.ID, AppLanguage.EN)
+    Column(Modifier.selectableGroup()) {
+        options.forEachIndexed { index, language ->
+            if (index > 0) RowDivider()
+            val isSelected = language == selected
+            Row(
+                Modifier.fillMaxWidth().defaultMinSize(minHeight = RowMinHeight)
+                    .selectable(selected = isSelected, role = Role.RadioButton, onClick = { onSelect(language) })
+                    .padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    strings.label(language),
+                    style = ActivaPlanTheme.type.cardTitle,
+                    color = c.text,
+                    modifier = Modifier.weight(1f),
+                )
+                // Tanda centang, bukan hanya warna, menandai pilihan aktif.
+                if (isSelected) ActivaIcon(ActivaIconKind.CHECK, c.primary, size = 20.dp)
+            }
+        }
     }
 }
 
@@ -383,7 +424,7 @@ private fun InfoBlock(title: String, body: String) {
 
 // region Pratinjau
 
-private val previewActions = SettingsActions({}, {}, {}, {}, {}, {}, {}, {})
+private val previewActions = SettingsActions({}, {}, {}, {}, {}, {}, {}, {}, {})
 
 @Composable
 private fun SettingsPreview(darkTheme: Boolean, settings: Settings, permission: PermissionState) = ActivaPlanTheme(darkTheme = darkTheme) {
@@ -397,6 +438,12 @@ private fun SettingsDeniedLightPreview() = SettingsPreview(false, Settings.DEFAU
 @Preview(widthDp = 390, heightDp = 844, showBackground = true)
 @Composable
 private fun SettingsDeniedDarkPreview() = SettingsPreview(true, Settings.DEFAULT.copy(theme = ThemeMode.DARK), PermissionState.DENIED)
+
+@Preview(widthDp = 390, heightDp = 844, showBackground = true)
+@Composable
+private fun SettingsEnglishLightPreview() = ActivaPlanTheme(darkTheme = false, language = Language.EN) {
+    SettingsContent(Settings.DEFAULT.copy(language = AppLanguage.EN), PermissionState.GRANTED, "0.1.0", previewActions, remember { SnackbarHostState() })
+}
 
 @Preview(widthDp = 390, heightDp = 844, showBackground = true)
 @Composable

@@ -276,6 +276,7 @@ enum class StringKey(val id: String, val en: String) {
     SETTINGS_GROUP_REMINDERS("PENGINGAT", "REMINDERS"),
     SETTINGS_GROUP_DATA("DATA", "DATA"),
     SETTINGS_GROUP_ABOUT("TENTANG", "ABOUT"),
+    SETTINGS_GROUP_LANGUAGE("BAHASA", "LANGUAGE"),
     SETTINGS_THEME("Tema", "Theme"),
     SETTINGS_REMINDERS_ENABLED("Pengingat latihan", "Workout reminders"),
     SETTINGS_DEFAULT_TIME("Waktu default", "Default time"),

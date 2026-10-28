@@ -1,6 +1,7 @@
 package com.activaplan.app.domain.usecase
 
 import com.activaplan.app.data.repository.UserDataRepository
+import com.activaplan.app.domain.model.AppLanguage
 import com.activaplan.app.domain.model.OnboardingChoices
 import com.activaplan.app.domain.model.Settings
 import com.activaplan.app.domain.model.ThemeMode
@@ -12,6 +13,11 @@ class ObserveSettingsUseCase(private val userData: UserDataRepository) {
 
 class SetThemeUseCase(private val userData: UserDataRepository) {
     suspend operator fun invoke(theme: ThemeMode) = userData.updateSettings { it.copy(theme = theme) }
+}
+
+/** Mengganti bahasa UI. Teks, konten latihan, dan isi notifikasi pengingat ikut berganti karena semuanya membaca `Settings.language`. */
+class SetLanguageUseCase(private val userData: UserDataRepository) {
+    suspend operator fun invoke(language: AppLanguage) = userData.updateSettings { it.copy(language = language) }
 }
 
 /** Menyalakan atau mematikan semua pengingat; alarm diselaraskan oleh `ReminderSynchronizer` yang mengamati setelan. */

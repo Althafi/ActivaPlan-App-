@@ -2,6 +2,7 @@ package com.activaplan.app.presentation.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.activaplan.app.domain.model.AppLanguage
 import com.activaplan.app.domain.model.Settings
 import com.activaplan.app.domain.model.ThemeMode
 import com.activaplan.app.domain.reminder.NotificationPermission
@@ -12,6 +13,7 @@ import com.activaplan.app.domain.usecase.ClearSessionHistoryUseCase
 import com.activaplan.app.domain.usecase.ObserveSettingsUseCase
 import com.activaplan.app.domain.usecase.SetDefaultTimeUseCase
 import com.activaplan.app.domain.usecase.SetKeepHistoryUseCase
+import com.activaplan.app.domain.usecase.SetLanguageUseCase
 import com.activaplan.app.domain.usecase.SetRemindersEnabledUseCase
 import com.activaplan.app.domain.usecase.SetThemeUseCase
 import kotlinx.coroutines.CancellationException
@@ -41,6 +43,7 @@ sealed interface SettingsEvent {
 class SettingsViewModel(
     observeSettings: ObserveSettingsUseCase,
     private val setTheme: SetThemeUseCase,
+    private val setLanguage: SetLanguageUseCase,
     private val setRemindersEnabled: SetRemindersEnabledUseCase,
     private val setDefaultTime: SetDefaultTimeUseCase,
     private val setKeepHistory: SetKeepHistoryUseCase,
@@ -91,6 +94,8 @@ class SettingsViewModel(
     }
 
     fun onTheme(theme: ThemeMode): Unit = perform({ onTheme(theme) }) { setTheme(theme) }
+
+    fun onLanguage(language: AppLanguage): Unit = perform({ onLanguage(language) }) { setLanguage(language) }
 
     fun onRemindersEnabled(enabled: Boolean): Unit = perform({ onRemindersEnabled(enabled) }) {
         setRemindersEnabled(enabled)
