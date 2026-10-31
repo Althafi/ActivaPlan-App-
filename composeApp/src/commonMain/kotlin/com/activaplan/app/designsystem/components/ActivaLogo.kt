@@ -27,27 +27,55 @@ object ActivaBrand {
 }
 
 private const val VIEWPORT = 108f
-private val LeftFoot = Offset(34f, 74f)
-private val RightFoot = Offset(74f, 74f)
-private val Apex = Offset(54f, 30f)
-private val Spark = Offset(54f, 21f)
+private val LeftFoot = Offset(31f, 74f)
+private val RightFoot = Offset(77f, 74f)
+private val Apex = Offset(54f, 33f)
+private val Spark = Offset(54f, 24f)
 
 /** Pusat titik zona 2 × 2: Biru, Merah, Kuning, Hijau; urutannya sama dengan zona di `BoardDiagram`. */
-private val DotCenters = listOf(Offset(50.1f, 59.5f), Offset(57.9f, 59.5f), Offset(50.1f, 67.3f), Offset(57.9f, 67.3f))
+private val DotCenters = listOf(Offset(48.8f, 60.5f), Offset(59.2f, 60.5f), Offset(48.8f, 70.9f), Offset(59.2f, 70.9f))
 
-private const val DOT_RADIUS = 2.8f
-private const val RING_WIDTH = 1f
-private const val STROKE_WIDTH = 8f
+private const val DOT_RADIUS = 4.8f
+private const val RING_WIDTH = 0.6f
+private const val STROKE_WIDTH = 6f
+private const val GLYPH_WIDTH = 0.85f
 private const val DOT_STAGGER = 0.2f
 private const val DOT_SPAN = 0.4f
 
+/** Bagian ikon di dalam titik, koordinatnya relatif ke pusat titik (satuan kotak 108). */
+private sealed interface Glyph {
+    class Line(val points: List<Offset>) : Glyph
+    class Blob(val center: Offset, val radius: Float) : Glyph
+}
+
+/** Garis bersambung dari pasangan x, y berurutan. */
+private fun line(vararg xy: Float): Glyph = Glyph.Line(List(xy.size / 2) { Offset(xy[it * 2], xy[it * 2 + 1]) })
+
+/** Ikon tiap titik, urutan sama dengan [DotCenters]: barbel (kekuatan), pelari (lari), kalender (rencana), denyut (kebugaran). */
+private val DotGlyphs: List<List<Glyph>> = listOf(
+    listOf(
+        line(-2.3f, 0f, 2.3f, 0f), line(-1.6f, -1.7f, -1.6f, 1.7f), line(1.6f, -1.7f, 1.6f, 1.7f),
+        line(-2.5f, -0.9f, -2.5f, 0.9f), line(2.5f, -0.9f, 2.5f, 0.9f),
+    ),
+    listOf(
+        Glyph.Blob(Offset(0.8f, -2f), 0.75f), line(0.3f, -1.1f, -0.3f, 0.5f),
+        line(0.1f, -0.7f, 1.4f, -0.1f, 2f, -1f), line(0.1f, -0.7f, -1.1f, -0.2f, -1.6f, 0.9f),
+        line(-0.3f, 0.5f, 1.1f, 1.2f, 0.8f, 2.5f), line(-0.3f, 0.5f, -1.3f, 1.6f, -2.4f, 1.3f),
+    ),
+    listOf(
+        line(-2.1f, -1.3f, 2.1f, -1.3f, 2.1f, 2.2f, -2.1f, 2.2f, -2.1f, -1.3f), line(-2.1f, 0f, 2.1f, 0f),
+        line(-1f, -2.5f, -1f, -1.3f), line(1f, -2.5f, 1f, -1.3f),
+    ),
+    listOf(line(-2.6f, 0.3f, -1f, 0.3f, -0.2f, -1.9f, 0.8f, 1.9f, 1.6f, 0.3f, 2.6f, 0.3f)),
+)
+
 /**
- * Logo ActivaPlan: huruf A dari dua garis dengan empat titik zona di dalamnya, digambar di kotak 108 × 108
- * (sama dengan ikon peluncur Android) sehingga ukurannya tetap sebanding dengan ikon OS.
+ * Logo ActivaPlan: huruf A dari dua garis dengan empat titik zona di dalamnya, masing-masing memuat ikon latihan,
+ * digambar di kotak 108 × 108 (sama dengan ikon peluncur Android) sehingga ukurannya tetap sebanding dengan ikon OS.
  *
  * Semua parameter animasi bernilai 0..1 dan berasal dari luar, jadi komposabel ini tanpa state dan mudah dipratinjau:
  * [legs] menggambar kedua kaki A dari bawah ke puncak, [dots] memunculkan keempat titik berurutan dengan sedikit
- * memantul, [spark] memainkan percikan di puncak (0 atau 1 = tidak tampak).
+ * memantul (ikonnya ikut muncul), [spark] memainkan percikan di puncak (0 atau 1 = tidak tampak).
  * Dekoratif; teks di sebelahnya yang dibaca pembaca layar.
  */
 @Composable
@@ -80,6 +108,13 @@ fun ActivaLogo(
                 drawCircle(zoneColors[i], DOT_RADIUS * k * scale, o(center))
                 // Cincin putih berpusat di tepi isi, supaya merah dan kuning tetap terbaca di atas oranye.
                 drawCircle(ringColor, DOT_RADIUS * k * scale, o(center), style = Stroke(RING_WIDTH * k * scale))
+                fun at(p: Offset) = o(Offset(center.x + p.x * scale, center.y + p.y * scale))
+                for (glyph in DotGlyphs[i]) when (glyph) {
+                    is Glyph.Blob -> drawCircle(ringColor, glyph.radius * k * scale, at(glyph.center))
+                    is Glyph.Line -> glyph.points.zipWithNext { a, b ->
+                        drawLine(ringColor, at(a), at(b), GLYPH_WIDTH * k * scale, StrokeCap.Round)
+                    }
+                }
             }
         }
 
