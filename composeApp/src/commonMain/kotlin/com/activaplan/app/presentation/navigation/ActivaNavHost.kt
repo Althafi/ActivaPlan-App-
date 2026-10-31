@@ -21,7 +21,7 @@ import com.activaplan.app.presentation.session.SessionScreen
 import com.activaplan.app.presentation.settings.SettingsScreen
 
 @Composable
-fun ActivaNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
+fun ActivaNavHost(navController: NavHostController, modifier: Modifier = Modifier, exploreScrollResetToken: Int = 0) {
     NavHost(navController, startDestination = TopLevelDestination.start.route, modifier = modifier) {
         composable(TopLevelDestination.HOME.route) { entry ->
             val dataCleared by entry.savedStateHandle.getStateFlow(DATA_CLEARED_KEY, false).collectAsStateWithLifecycle()
@@ -34,7 +34,10 @@ fun ActivaNavHost(navController: NavHostController, modifier: Modifier = Modifie
             )
         }
         composable(TopLevelDestination.EXPLORE.route) {
-            ExploreScreen(onOpenExercise = { navController.navigate(ExerciseDetailRoute(it)) })
+            ExploreScreen(
+                onOpenExercise = { navController.navigate(ExerciseDetailRoute(it)) },
+                scrollResetToken = exploreScrollResetToken,
+            )
         }
         composable<ExerciseDetailRoute> { entry ->
             ExerciseDetailScreen(

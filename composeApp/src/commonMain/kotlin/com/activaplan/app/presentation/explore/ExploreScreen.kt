@@ -16,13 +16,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -62,6 +66,9 @@ import com.activaplan.app.domain.model.Mode
 import com.activaplan.app.domain.model.initialExploreMode
 import com.activaplan.app.domain.usecase.FilterExercisesUseCase
 import com.activaplan.app.domain.usecase.ObserveSettingsUseCase
+import com.activaplan.app.presentation.ScreenListSkeleton
+import com.activaplan.app.presentation.SkeletonBlock
+import com.activaplan.app.presentation.rememberShowSkeleton
 import kotlinx.coroutines.flow.first
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
@@ -80,10 +87,15 @@ class ExploreActions(
 /**
  * Jelajah: cari dan filter latihan per mode, kategori, dan level. [onOpenExercise] menerima ID latihan.
  * Bila [onBack] diberikan, layar dalam mode pilih (dari Builder): ada tombol kembali, dan mengetuk kartu
- * memanggil [onOpenExercise] dengan latihan yang dipilih.
+ * memanggil [onOpenExercise] dengan latihan yang dipilih. Daftar mulai dari atas lagi tiap [scrollResetToken] berubah.
  */
 @Composable
-fun ExploreScreen(onOpenExercise: (String) -> Unit, modifier: Modifier = Modifier, onBack: (() -> Unit)? = null) {
+fun ExploreScreen(
+    onOpenExercise: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    onBack: (() -> Unit)? = null,
+    scrollResetToken: Int = 0,
+) {
     val repository = koinInject<ExerciseRepository>()
     val filter = koinInject<FilterExercisesUseCase>()
     val observeSettings = koinInject<ObserveSettingsUseCase>()
@@ -97,7 +109,7 @@ fun ExploreScreen(onOpenExercise: (String) -> Unit, modifier: Modifier = Modifie
         viewModel::onMode, viewModel::onText, viewModel::onCategory, viewModel::onDifficulty,
         viewModel::resetFilters, viewModel::reload, onOpenExercise,
     )
-    ExploreContent(query, state, actions, modifier, onBack)
+    ExploreContent(query, state, actions, modifier, onBack, scrollResetToken)
 }
 
 private val modes = listOf(Mode.NO_EQUIPMENT, Mode.PUSHUP_BOARD, Mode.BOARD_ROPE)
@@ -109,13 +121,21 @@ fun ExploreContent(
     actions: ExploreActions,
     modifier: Modifier = Modifier,
     onBack: (() -> Unit)? = null,
+    scrollResetToken: Int = 0,
 ) {
+    // Posisi gulir tetap tersimpan saat ke Detail dan kembali, tapi dimulai dari atas lagi setelah pindah tab:
+    // kunci simpanannya memuat [scrollResetToken] pada saat layar ini masuk, jadi token baru berarti tidak ada
+    // posisi tersimpan untuk dipulihkan. Berada di luar `when` agar sama selama Loading dan Ready.
+    val visitToken = remember { scrollResetToken }
+    val listState = rememberSaveable(saver = LazyListState.Saver, key = "explore-list-$visitToken") { LazyListState() }
+    val showSkeleton = rememberShowSkeleton(state == ExploreUiState.Loading, state is ExploreUiState.Ready)
     Box(modifier.fillMaxSize().background(ActivaPlanTheme.colors.bg).statusBarsPadding()) {
-        when (state) {
+        if (showSkeleton) ExploreSkeleton() else when (state) {
             ExploreUiState.Loading -> Unit
             ExploreUiState.Error -> LoadError(actions.onReload)
             is ExploreUiState.Ready -> LazyColumn(
                 Modifier.fillMaxSize(),
+                state = listState,
                 contentPadding = PaddingValues(start = ActivaDimens.screenPadding, end = ActivaDimens.screenPadding, top = 16.dp, bottom = 24.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
@@ -127,6 +147,20 @@ fun ExploreContent(
                         ExerciseCard(it, picking = onBack != null) { actions.onOpenExercise(it.id) }
                     }
                 }
+            }
+        }
+    }
+}
+
+/** Kerangka Jelajah: kolom cari, mode, dan dua baris chip di atas daftar kartu, sama tinggi dengan isi aslinya. */
+@Composable
+private fun ExploreSkeleton() = ScreenListSkeleton(cardCount = 6) {
+    Column(Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        SkeletonBlock(Modifier.fillMaxWidth().height(52.dp), ActivaShapes.button)
+        SkeletonBlock(Modifier.fillMaxWidth().height(44.dp), ActivaShapes.button)
+        repeat(2) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                repeat(4) { SkeletonBlock(Modifier.width(72.dp).height(36.dp), ActivaShapes.chip) }
             }
         }
     }

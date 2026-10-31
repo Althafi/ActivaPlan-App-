@@ -4,7 +4,13 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -30,6 +36,16 @@ fun MainScaffold() {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val current = TopLevelDestination.fromRoute(backStackEntry?.destination?.route)
     val strings = ActivaPlanTheme.strings
+    // Naik tiap pengguna meninggalkan tab Jelajah ke tab lain; Jelajah memakainya untuk mulai dari daftar paling atas.
+    // Membuka Detail tidak menaikkannya (`current` null di sana), jadi kembali dari Detail tetap di posisi semula.
+    var exploreScrollResetToken by rememberSaveable { mutableIntStateOf(0) }
+    var previousTab by remember { mutableStateOf<TopLevelDestination?>(null) }
+    LaunchedEffect(current) {
+        if (current != null) {
+            if (previousTab == TopLevelDestination.EXPLORE && current != TopLevelDestination.EXPLORE) exploreScrollResetToken++
+            previousTab = current
+        }
+    }
     // Detail, Builder, mode pilih, pratinjau template, sesi, dan pengantar ulang tampil tanpa bottom nav, seperti di Figma.
     val destination = backStackEntry?.destination
     val showBottomNav = listOf(
@@ -53,7 +69,7 @@ fun MainScaffold() {
             }
         },
     ) { padding ->
-        ActivaNavHost(navController, Modifier.padding(padding))
+        ActivaNavHost(navController, Modifier.padding(padding), exploreScrollResetToken)
     }
 }
 
