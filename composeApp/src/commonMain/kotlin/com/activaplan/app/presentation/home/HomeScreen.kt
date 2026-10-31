@@ -67,6 +67,8 @@ import com.activaplan.app.domain.model.TodayWorkout
 import com.activaplan.app.domain.model.WeekStreak
 import com.activaplan.app.domain.time.formatClock
 import com.activaplan.app.domain.usecase.ObserveHomeUseCase
+import com.activaplan.app.presentation.ScreenListSkeleton
+import com.activaplan.app.presentation.rememberShowSkeleton
 import kotlinx.coroutines.flow.filter
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
@@ -116,7 +118,7 @@ fun HomeContent(
     modifier: Modifier = Modifier,
 ) {
     Box(modifier.fillMaxSize().background(ActivaPlanTheme.colors.bg).statusBarsPadding()) {
-        when (state) {
+        if (rememberShowSkeleton(state == HomeUiState.Loading, state is HomeUiState.Ready)) ScreenListSkeleton(cardCount = 4) else when (state) {
             HomeUiState.Loading -> Unit
             HomeUiState.Error -> LoadError(onReload)
             is HomeUiState.Ready -> HomeReady(state.data, onOpenSchedule, onStartWorkout, onOpenTemplate)

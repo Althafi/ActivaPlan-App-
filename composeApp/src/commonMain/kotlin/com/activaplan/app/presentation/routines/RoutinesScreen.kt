@@ -65,6 +65,8 @@ import com.activaplan.app.domain.time.formatClock
 import com.activaplan.app.domain.usecase.CreateRoutineFromTemplateUseCase
 import com.activaplan.app.domain.usecase.DeleteRoutineUseCase
 import com.activaplan.app.domain.usecase.ObserveRoutinesUseCase
+import com.activaplan.app.presentation.ScreenListSkeleton
+import com.activaplan.app.presentation.rememberShowSkeleton
 import kotlinx.coroutines.flow.filter
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
@@ -164,7 +166,7 @@ fun RoutinesContent(
     modifier: Modifier = Modifier,
 ) {
     Box(modifier.fillMaxSize().background(ActivaPlanTheme.colors.bg).statusBarsPadding()) {
-        when (state) {
+        if (rememberShowSkeleton(state == RoutinesUiState.Loading, state is RoutinesUiState.Ready)) ScreenListSkeleton() else when (state) {
             RoutinesUiState.Loading -> Unit
             RoutinesUiState.Error -> LoadError(actions.onReload)
             is RoutinesUiState.Ready -> ReadyContent(state.data, tab, onTab, actions)

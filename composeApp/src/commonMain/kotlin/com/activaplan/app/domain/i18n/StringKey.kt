@@ -55,6 +55,7 @@ enum class StringKey(val id: String, val en: String) {
     ACTION_DELETE("Hapus", "Delete"),
     ACTION_RETRY("Coba lagi", "Try again"),
     ACTION_RELOAD("Muat ulang", "Reload"),
+    LOADING("Memuat", "Loading"),
 
     ALERT_SET_DONE("Set {0} dari {1} selesai. Istirahat {2} detik.", "Set {0} of {1} done. Rest {2} seconds."),
     ALERT_SCHEDULE_SAVED("Jadwal {0} {1} tersimpan.", "{0} {1} schedule saved."),

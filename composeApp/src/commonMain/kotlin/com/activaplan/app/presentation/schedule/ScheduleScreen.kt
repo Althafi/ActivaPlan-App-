@@ -93,6 +93,8 @@ import com.activaplan.app.domain.usecase.SaveScheduleUseCase
 import com.activaplan.app.domain.usecase.SetScheduleReminderUseCase
 import com.activaplan.app.domain.reminder.NotificationPermission
 import com.activaplan.app.domain.reminder.ReminderSynchronizer
+import com.activaplan.app.presentation.ScreenListSkeleton
+import com.activaplan.app.presentation.rememberShowSkeleton
 import com.activaplan.app.presentation.rememberNotificationPermissionRequester
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
@@ -231,7 +233,7 @@ fun ScheduleContent(
     modifier: Modifier = Modifier,
 ) {
     Box(modifier.fillMaxSize().background(ActivaPlanTheme.colors.bg).statusBarsPadding()) {
-        when (state) {
+        if (rememberShowSkeleton(state == ScheduleUiState.Loading, state is ScheduleUiState.Ready)) ScreenListSkeleton(cardCount = 4) else when (state) {
             ScheduleUiState.Loading -> Unit
             ScheduleUiState.Error -> LoadError(actions.onReload)
             is ScheduleUiState.Ready -> {
